@@ -8,9 +8,11 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "DTMNavigationController/DTMNavigationControllerDelegate.h"
 
 @interface AppDelegate ()
-
+@property (nonatomic, strong) UINavigationController *navigationController;
+@property (nonatomic, strong, nullable) id<UINavigationControllerDelegate> navigationControllerDelegate;
 @end
 
 @implementation AppDelegate
@@ -20,8 +22,14 @@
 {
     self.coreDataController = [[DTMCoreDataController alloc] init];
     
+    ViewController *firstViewController = [[ViewController alloc] init];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+    self.navigationControllerDelegate = [[DTMNavigationControllerDelegate alloc] init];
+    self.navigationController.delegate = self.navigationControllerDelegate;
+    [self.navigationController setNavigationBarHidden:YES];
+    
     self.window = [[UIWindow alloc] init];
-    self.window.rootViewController = [[ViewController alloc] init];
+    self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     
     return YES;

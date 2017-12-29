@@ -15,6 +15,7 @@
 		CE3621811FEFDB560065BCB1 /* DTMWeatherApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3621801FEFDB560065BCB1 /* DTMWeatherApplicationTests.m */; };
 		CE36218C1FEFDB560065BCB1 /* DTMWeatherApplicationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE36218B1FEFDB560065BCB1 /* DTMWeatherApplicationUITests.m */; };
 		CED094FE1FF6DD9A00B8FCC4 /* DTMCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED094FD1FF6DD9A00B8FCC4 /* DTMCoreDataController.m */; };
+		CED095021FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CED095011FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		CE36218D1FEFDB560065BCB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED094FC1FF6DD9A00B8FCC4 /* DTMCoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMCoreDataController.h; sourceTree = "<group>"; };
 		CED094FD1FF6DD9A00B8FCC4 /* DTMCoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMCoreDataController.m; sourceTree = "<group>"; };
+		CED095001FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMNavigationControllerDelegate.h; sourceTree = "<group>"; };
+		CED095011FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMNavigationControllerDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,7 @@
 				CE3621641FEFDB560065BCB1 /* AppDelegate.h */,
 				CE3621651FEFDB560065BCB1 /* AppDelegate.m */,
 				CED094FB1FF6DD5900B8FCC4 /* DTMCoreDataController */,
+				CED094FF1FF6FCDC00B8FCC4 /* DTMNavigationController */,
 				CE3621671FEFDB560065BCB1 /* ViewController.h */,
 				CE3621681FEFDB560065BCB1 /* ViewController.m */,
 				CE3621701FEFDB560065BCB1 /* Assets.xcassets */,
@@ -140,6 +144,15 @@
 				CED094FD1FF6DD9A00B8FCC4 /* DTMCoreDataController.m */,
 			);
 			path = DTMCoreDataController;
+			sourceTree = "<group>";
+		};
+		CED094FF1FF6FCDC00B8FCC4 /* DTMNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				CED095001FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.h */,
+				CED095011FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m */,
+			);
+			path = DTMNavigationController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +290,7 @@
 				CE3621691FEFDB560065BCB1 /* ViewController.m in Sources */,
 				CE3621661FEFDB560065BCB1 /* AppDelegate.m in Sources */,
 				CE3621771FEFDB560065BCB1 /* main.m in Sources */,
+				CED095021FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m in Sources */,
 				CE36216F1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
