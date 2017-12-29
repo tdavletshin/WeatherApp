@@ -9,13 +9,12 @@
 /* Begin PBXBuildFile section */
 		CE3621661FEFDB560065BCB1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3621651FEFDB560065BCB1 /* AppDelegate.m */; };
 		CE3621691FEFDB560065BCB1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3621681FEFDB560065BCB1 /* ViewController.m */; };
-		CE36216C1FEFDB560065BCB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE36216A1FEFDB560065BCB1 /* Main.storyboard */; };
 		CE36216F1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE36216D1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodeld */; };
 		CE3621711FEFDB560065BCB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE3621701FEFDB560065BCB1 /* Assets.xcassets */; };
-		CE3621741FEFDB560065BCB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE3621721FEFDB560065BCB1 /* LaunchScreen.storyboard */; };
 		CE3621771FEFDB560065BCB1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3621761FEFDB560065BCB1 /* main.m */; };
 		CE3621811FEFDB560065BCB1 /* DTMWeatherApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3621801FEFDB560065BCB1 /* DTMWeatherApplicationTests.m */; };
 		CE36218C1FEFDB560065BCB1 /* DTMWeatherApplicationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE36218B1FEFDB560065BCB1 /* DTMWeatherApplicationUITests.m */; };
+		CED094FE1FF6DD9A00B8FCC4 /* DTMCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED094FD1FF6DD9A00B8FCC4 /* DTMCoreDataController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,10 +40,8 @@
 		CE3621651FEFDB560065BCB1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CE3621671FEFDB560065BCB1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		CE3621681FEFDB560065BCB1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		CE36216B1FEFDB560065BCB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE36216E1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DTMWeatherApplication.xcdatamodel; sourceTree = "<group>"; };
 		CE3621701FEFDB560065BCB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CE3621731FEFDB560065BCB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE3621751FEFDB560065BCB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE3621761FEFDB560065BCB1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CE36217C1FEFDB560065BCB1 /* DTMWeatherApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DTMWeatherApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +50,8 @@
 		CE3621871FEFDB560065BCB1 /* DTMWeatherApplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DTMWeatherApplicationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE36218B1FEFDB560065BCB1 /* DTMWeatherApplicationUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMWeatherApplicationUITests.m; sourceTree = "<group>"; };
 		CE36218D1FEFDB560065BCB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CED094FC1FF6DD9A00B8FCC4 /* DTMCoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMCoreDataController.h; sourceTree = "<group>"; };
+		CED094FD1FF6DD9A00B8FCC4 /* DTMCoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMCoreDataController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,11 +104,10 @@
 			children = (
 				CE3621641FEFDB560065BCB1 /* AppDelegate.h */,
 				CE3621651FEFDB560065BCB1 /* AppDelegate.m */,
+				CED094FB1FF6DD5900B8FCC4 /* DTMCoreDataController */,
 				CE3621671FEFDB560065BCB1 /* ViewController.h */,
 				CE3621681FEFDB560065BCB1 /* ViewController.m */,
-				CE36216A1FEFDB560065BCB1 /* Main.storyboard */,
 				CE3621701FEFDB560065BCB1 /* Assets.xcassets */,
-				CE3621721FEFDB560065BCB1 /* LaunchScreen.storyboard */,
 				CE3621751FEFDB560065BCB1 /* Info.plist */,
 				CE3621761FEFDB560065BCB1 /* main.m */,
 				CE36216D1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodeld */,
@@ -133,6 +131,15 @@
 				CE36218D1FEFDB560065BCB1 /* Info.plist */,
 			);
 			path = DTMWeatherApplicationUITests;
+			sourceTree = "<group>";
+		};
+		CED094FB1FF6DD5900B8FCC4 /* DTMCoreDataController */ = {
+			isa = PBXGroup;
+			children = (
+				CED094FC1FF6DD9A00B8FCC4 /* DTMCoreDataController.h */,
+				CED094FD1FF6DD9A00B8FCC4 /* DTMCoreDataController.m */,
+			);
+			path = DTMCoreDataController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,9 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE3621741FEFDB560065BCB1 /* LaunchScreen.storyboard in Resources */,
 				CE3621711FEFDB560065BCB1 /* Assets.xcassets in Resources */,
-				CE36216C1FEFDB560065BCB1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED094FE1FF6DD9A00B8FCC4 /* DTMCoreDataController.m in Sources */,
 				CE3621691FEFDB560065BCB1 /* ViewController.m in Sources */,
 				CE3621661FEFDB560065BCB1 /* AppDelegate.m in Sources */,
 				CE3621771FEFDB560065BCB1 /* main.m in Sources */,
@@ -305,25 +311,6 @@
 			targetProxy = CE3621881FEFDB560065BCB1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		CE36216A1FEFDB560065BCB1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE36216B1FEFDB560065BCB1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		CE3621721FEFDB560065BCB1 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE3621731FEFDB560065BCB1 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		CE36218E1FEFDB560065BCB1 /* Debug */ = {
