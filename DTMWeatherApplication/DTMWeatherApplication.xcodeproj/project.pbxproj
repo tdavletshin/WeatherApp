@@ -16,6 +16,8 @@
 		CE36218C1FEFDB560065BCB1 /* DTMWeatherApplicationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE36218B1FEFDB560065BCB1 /* DTMWeatherApplicationUITests.m */; };
 		CED094FE1FF6DD9A00B8FCC4 /* DTMCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED094FD1FF6DD9A00B8FCC4 /* DTMCoreDataController.m */; };
 		CED095021FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CED095011FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m */; };
+		CED095091FF704D700B8FCC4 /* DTMPopViewControllerAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CED095081FF704D700B8FCC4 /* DTMPopViewControllerAnimation.m */; };
+		CED0950C1FF7051400B8FCC4 /* DTMPushViewControllerAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CED0950B1FF7051400B8FCC4 /* DTMPushViewControllerAnimation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,10 @@
 		CED094FD1FF6DD9A00B8FCC4 /* DTMCoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMCoreDataController.m; sourceTree = "<group>"; };
 		CED095001FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMNavigationControllerDelegate.h; sourceTree = "<group>"; };
 		CED095011FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMNavigationControllerDelegate.m; sourceTree = "<group>"; };
+		CED095071FF704D700B8FCC4 /* DTMPopViewControllerAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMPopViewControllerAnimation.h; sourceTree = "<group>"; };
+		CED095081FF704D700B8FCC4 /* DTMPopViewControllerAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMPopViewControllerAnimation.m; sourceTree = "<group>"; };
+		CED0950A1FF7051400B8FCC4 /* DTMPushViewControllerAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMPushViewControllerAnimation.h; sourceTree = "<group>"; };
+		CED0950B1FF7051400B8FCC4 /* DTMPushViewControllerAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMPushViewControllerAnimation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,14 +113,15 @@
 			children = (
 				CE3621641FEFDB560065BCB1 /* AppDelegate.h */,
 				CE3621651FEFDB560065BCB1 /* AppDelegate.m */,
-				CED094FB1FF6DD5900B8FCC4 /* DTMCoreDataController */,
-				CED094FF1FF6FCDC00B8FCC4 /* DTMNavigationController */,
 				CE3621671FEFDB560065BCB1 /* ViewController.h */,
 				CE3621681FEFDB560065BCB1 /* ViewController.m */,
 				CE3621701FEFDB560065BCB1 /* Assets.xcassets */,
 				CE3621751FEFDB560065BCB1 /* Info.plist */,
 				CE3621761FEFDB560065BCB1 /* main.m */,
 				CE36216D1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodeld */,
+				CED094FB1FF6DD5900B8FCC4 /* DTMCoreDataController */,
+				CED094FF1FF6FCDC00B8FCC4 /* DTMNavigationController */,
+				CED095031FF7046C00B8FCC4 /* DTMAnimation */,
 			);
 			path = DTMWeatherApplication;
 			sourceTree = "<group>";
@@ -153,6 +160,17 @@
 				CED095011FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m */,
 			);
 			path = DTMNavigationController;
+			sourceTree = "<group>";
+		};
+		CED095031FF7046C00B8FCC4 /* DTMAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				CED095071FF704D700B8FCC4 /* DTMPopViewControllerAnimation.h */,
+				CED095081FF704D700B8FCC4 /* DTMPopViewControllerAnimation.m */,
+				CED0950A1FF7051400B8FCC4 /* DTMPushViewControllerAnimation.h */,
+				CED0950B1FF7051400B8FCC4 /* DTMPushViewControllerAnimation.m */,
+			);
+			path = DTMAnimation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,7 +308,9 @@
 				CE3621691FEFDB560065BCB1 /* ViewController.m in Sources */,
 				CE3621661FEFDB560065BCB1 /* AppDelegate.m in Sources */,
 				CE3621771FEFDB560065BCB1 /* main.m in Sources */,
+				CED095091FF704D700B8FCC4 /* DTMPopViewControllerAnimation.m in Sources */,
 				CED095021FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m in Sources */,
+				CED0950C1FF7051400B8FCC4 /* DTMPushViewControllerAnimation.m in Sources */,
 				CE36216F1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
