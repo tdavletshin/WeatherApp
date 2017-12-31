@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
-#import "DTMNavigationController/DTMNavigationControllerDelegate.h"
+#import "DTMNavigationControllerDelegate.h"
+#import "DTMMainViewController.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) UINavigationController *navigationController;
@@ -22,7 +22,7 @@
 {
     self.coreDataController = [[DTMCoreDataController alloc] init];
     
-    ViewController *firstViewController = [[ViewController alloc] init];
+    DTMMainViewController *firstViewController = [[DTMMainViewController alloc] init];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
     self.navigationControllerDelegate = [[DTMNavigationControllerDelegate alloc] init];
     self.navigationController.delegate = self.navigationControllerDelegate;
