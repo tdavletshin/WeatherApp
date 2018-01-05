@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "DTMExtendedUITableViewDataSourceProtocol.h"
 
 @interface DTMTableViewDataSource : NSObject <UITableViewDataSource>
+
+//- (void)updateDataForMainTableView;
 
 @end

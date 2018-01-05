@@ -23,6 +23,9 @@
 		CED095181FF941C600B8FCC4 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED095171FF941C600B8FCC4 /* OCMock.framework */; };
 		CED0951C1FF95C5E00B8FCC4 /* DTMTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CED0951B1FF95C5E00B8FCC4 /* DTMTableViewDelegate.m */; };
 		CED0951F1FF9604200B8FCC4 /* DTMTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CED0951E1FF9604200B8FCC4 /* DTMTableViewDataSource.m */; };
+		CED095251FFC405800B8FCC4 /* DTMAddingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED095241FFC405800B8FCC4 /* DTMAddingViewController.m */; };
+		CED095311FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CED0952F1FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataClass.m */; };
+		CED095321FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = CED095301FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataProperties.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,13 @@
 		CED0951B1FF95C5E00B8FCC4 /* DTMTableViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMTableViewDelegate.m; sourceTree = "<group>"; };
 		CED0951D1FF9604200B8FCC4 /* DTMTableViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMTableViewDataSource.h; sourceTree = "<group>"; };
 		CED0951E1FF9604200B8FCC4 /* DTMTableViewDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMTableViewDataSource.m; sourceTree = "<group>"; };
+		CED095231FFC405800B8FCC4 /* DTMAddingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMAddingViewController.h; sourceTree = "<group>"; };
+		CED095241FFC405800B8FCC4 /* DTMAddingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMAddingViewController.m; sourceTree = "<group>"; };
+		CED0952D1FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DTMWeatherDataModel+CoreDataProperties.h"; sourceTree = "<group>"; };
+		CED0952E1FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DTMWeatherDataModel+CoreDataClass.h"; sourceTree = "<group>"; };
+		CED0952F1FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DTMWeatherDataModel+CoreDataClass.m"; sourceTree = "<group>"; };
+		CED095301FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DTMWeatherDataModel+CoreDataProperties.m"; sourceTree = "<group>"; };
+		CED095341FFED4E900B8FCC4 /* DTMExtendedUITableViewDataSourceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMExtendedUITableViewDataSourceProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +143,7 @@
 				CE3621751FEFDB560065BCB1 /* Info.plist */,
 				CE3621761FEFDB560065BCB1 /* main.m */,
 				CE36216D1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodeld */,
+				CED0952C1FFEAC2600B8FCC4 /* DTMWeatherinformationDataModel */,
 				CED0950D1FF9368100B8FCC4 /* ViewControllers */,
 				CED095191FF95BE600B8FCC4 /* DTMTableViewDelegateAndDatasource */,
 				CED094FF1FF6FCDC00B8FCC4 /* DTMNavigationControllerDelegate */,
@@ -194,6 +205,8 @@
 			children = (
 				CED0950E1FF936EB00B8FCC4 /* DTMMainViewController.h */,
 				CED0950F1FF936EB00B8FCC4 /* DTMMainViewController.m */,
+				CED095231FFC405800B8FCC4 /* DTMAddingViewController.h */,
+				CED095241FFC405800B8FCC4 /* DTMAddingViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -215,8 +228,20 @@
 				CED0951B1FF95C5E00B8FCC4 /* DTMTableViewDelegate.m */,
 				CED0951D1FF9604200B8FCC4 /* DTMTableViewDataSource.h */,
 				CED0951E1FF9604200B8FCC4 /* DTMTableViewDataSource.m */,
+				CED095341FFED4E900B8FCC4 /* DTMExtendedUITableViewDataSourceProtocol.h */,
 			);
 			path = DTMTableViewDelegateAndDatasource;
+			sourceTree = "<group>";
+		};
+		CED0952C1FFEAC2600B8FCC4 /* DTMWeatherinformationDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				CED0952D1FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataProperties.h */,
+				CED0952E1FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataClass.h */,
+				CED0952F1FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataClass.m */,
+				CED095301FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataProperties.m */,
+			);
+			path = DTMWeatherinformationDataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,11 +375,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED095321FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataProperties.m in Sources */,
 				CED094FE1FF6DD9A00B8FCC4 /* DTMCoreDataController.m in Sources */,
 				CE3621661FEFDB560065BCB1 /* AppDelegate.m in Sources */,
+				CED095251FFC405800B8FCC4 /* DTMAddingViewController.m in Sources */,
 				CE3621771FEFDB560065BCB1 /* main.m in Sources */,
 				CED0951C1FF95C5E00B8FCC4 /* DTMTableViewDelegate.m in Sources */,
 				CED095091FF704D700B8FCC4 /* DTMPopViewControllerAnimation.m in Sources */,
+				CED095311FFEC3F100B8FCC4 /* DTMWeatherDataModel+CoreDataClass.m in Sources */,
 				CED095021FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m in Sources */,
 				CED0951F1FF9604200B8FCC4 /* DTMTableViewDataSource.m in Sources */,
 				CED0950C1FF7051400B8FCC4 /* DTMPushViewControllerAnimation.m in Sources */,
