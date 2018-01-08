@@ -10,6 +10,8 @@
 
 @protocol DTMExtendedUITableViewDataSource <UITableViewDataSource>
 
+@required
+
 - (void)updateDataForMainTableView;
 
 @end

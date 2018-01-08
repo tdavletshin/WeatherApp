@@ -7,24 +7,25 @@
 //
 
 #import "DTMMainViewController.h"
-#import "DTMTableViewDelegate.h"
-#import "DTMTableViewDataSource.h"
+#import "DTMMainTableViewDelegate.h"
 #import "DTMAddingViewController.h"
 #import "DTMExtendedUITableViewDataSourceProtocol.h"
 #import <Masonry/Masonry.h>
+#import <Foundation/Foundation.h>
+#import "DTMMainTableViewCell.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
-const CGFloat NAVIGATION_BAR_FONT_SIZE = 36.0;
-const int NAVIGATION_BAR_COLOR = 0x005df4;
+const CGFloat NavigationBarFontSize = 36.0;
+const int NavigationBarColor = 0x00aeda;
+NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER = @"DTM.Custom.Weather.Cell";
 
 @interface DTMMainViewController ()
 
 @property (nonatomic, strong) UITableView *mainTableView;
-@property (nonatomic, strong) id<UITableViewDelegate> mainTableViewDelegate;
-@property (nonatomic, strong) id<UITableViewDataSource> mainTableViewDataSource;
-
+@property (nonatomic, strong) id<UITableViewDelegate, DTMExtendedUITableViewDataSource> mainTableViewDelegateAndDataSource;
+@property (nonatomic, strong, nullable) UIImage *backgroundImage;
 
 @end
 
@@ -34,42 +35,55 @@ const int NAVIGATION_BAR_COLOR = 0x005df4;
 {
     [super viewDidLoad];
     
-    //self.view.backgroundColor = UIColor.whiteColor;
-    
     [self setUpNavigationBar];
     
     self.mainTableView = [[UITableView alloc] init];
-    self.mainTableViewDataSource = [[DTMTableViewDataSource alloc] init];
-    self.mainTableViewDelegate = [[DTMTableViewDelegate alloc] init];
-    self.mainTableView.delegate = self.mainTableViewDelegate;
-    self.mainTableView.dataSource = self.mainTableViewDataSource;
-    [self.mainTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"DTM.Weather.Cell"];
+    self.mainTableViewDelegateAndDataSource = [[DTMMainTableViewDelegate alloc] init];
+    self.mainTableView.delegate = self.mainTableViewDelegateAndDataSource;
+    self.mainTableView.dataSource = self.mainTableViewDelegateAndDataSource;
+    [self.mainTableView registerClass:[DTMMainTableViewCell class] forCellReuseIdentifier:DTM_CUSTOM_CELL_REUSE_IDENTIFIER];
+    self.mainTableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paper.jpg"]];
+    self.mainTableView.backgroundView.contentMode = UIViewContentModeScaleAspectFit;
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.mainTableView];
+    
 }
 
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    [self.mainTableView beginUpdates];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.mainTableViewDelegateAndDataSource updateDataForMainTableView];
+    [self.mainTableView reloadData];
 }
 
 
 - (void)viewDidLayoutSubviews
 {
-    [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make)
-     {
-         make.top.equalTo(self.navigationController.navigationBar.mas_bottom);
-         make.bottom.equalTo(self.view.mas_bottom);
-         make.right.equalTo(self.view.mas_right);
-         make.left.equalTo(self.view.mas_left);
-     }];
+    
+    [   self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make)
+        {
+             make.top.equalTo(self.view.mas_top);
+             make.bottom.equalTo(self.view.mas_bottom);
+             make.right.equalTo(self.view.mas_right);
+             make.left.equalTo(self.view.mas_left);
+         }
+    ];
 }
 
 #pragma mark - Setting up a navigation bar
 
 - (void)setUpNavigationBar
 {
-    [self.navigationController.navigationBar setBarTintColor: UIColorFromRGB(NAVIGATION_BAR_COLOR)];
+    [self.navigationController.navigationBar setBarTintColor: UIColorFromRGB(NavigationBarColor)];
     [self.navigationController.navigationBar setTintColor: UIColor.whiteColor];
     
     NSShadow *shadow = [[NSShadow alloc] init];
@@ -78,7 +92,7 @@ const int NAVIGATION_BAR_COLOR = 0x005df4;
     [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                                       UIColor.whiteColor, NSForegroundColorAttributeName,
                                                                       shadow, NSShadowAttributeName,
-                                                                      [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:NAVIGATION_BAR_FONT_SIZE], NSFontAttributeName, nil]];
+                                                                      [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:NavigationBarFontSize], NSFontAttributeName, nil]];
     
     
     self.navigationItem.title = @"Weather for date";
@@ -94,8 +108,5 @@ const int NAVIGATION_BAR_COLOR = 0x005df4;
 {
     [self.navigationController pushViewController:[DTMAddingViewController new] animated:YES];
 }
-
-
-
 
 @end

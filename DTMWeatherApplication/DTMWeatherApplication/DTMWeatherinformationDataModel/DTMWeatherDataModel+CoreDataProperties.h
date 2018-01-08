@@ -2,7 +2,7 @@
 //  DTMWeatherDataModel+CoreDataProperties.h
 //  DTMWeatherApplication
 //
-//  Created by user on 04.01.2018.
+//  Created by user on 08.01.2018.
 //  Copyright © 2018 Davletshin Timur. All rights reserved.
 //
 //
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *city_name;
 @property (nullable, nonatomic, copy) NSDate *date;
 @property (nonatomic) double humidity;
-@property (nonatomic) int32_t icon_id;
+@property (nullable, nonatomic, copy) NSString *icon_id;
 @property (nonatomic) double pressure;
 @property (nonatomic) double rain_value;
 @property (nonatomic) double snow_value;

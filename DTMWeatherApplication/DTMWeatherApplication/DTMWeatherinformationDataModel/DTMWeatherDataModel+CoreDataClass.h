@@ -2,7 +2,7 @@
 //  DTMWeatherDataModel+CoreDataClass.h
 //  DTMWeatherApplication
 //
-//  Created by user on 04.01.2018.
+//  Created by user on 08.01.2018.
 //  Copyright © 2018 Davletshin Timur. All rights reserved.
 //
 //

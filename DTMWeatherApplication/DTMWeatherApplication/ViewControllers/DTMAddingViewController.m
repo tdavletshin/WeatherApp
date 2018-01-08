@@ -7,10 +7,15 @@
 //
 
 #import "DTMAddingViewController.h"
+#import "AppDelegate.h"
+#import "DTMWeatherDataModel+CoreDataClass.h"
+#import "DTMWeatherDataModel+CoreDataProperties.h"
 
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 
 @interface DTMAddingViewController ()
+
+@property (nonatomic, strong) NSManagedObjectContext *coreDataContext;
 
 @end
 
@@ -18,12 +23,26 @@
 
 - (void)viewDidLoad
 {
-
+    [super viewDidLoad];
+    
     self.view.backgroundColor = UIColor.whiteColor;
     
     [self setUpNavigationBar];
     
-    [super viewDidLoad];
+//        DTMWeatherDataModel *data = [NSEntityDescription insertNewObjectForEntityForName:@"DTMWeatherDataModel" inManagedObjectContext:self.coreDataContext];
+//        data.city_name = @"NU nnnnn nnn nnn nnn nnn city";
+//        data.temperature = -5;
+//        data.date = [NSDate date];
+//        data.icon_id = @"10d";
+//    
+//        NSError *error = nil;
+//    
+//        if (![data.managedObjectContext save:&error])
+//        {
+//            NSLog(@"не удалось выполнить fetch request");
+//            NSLog(@"%@ %@", error, error.localizedDescription);
+//        }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,5 +69,18 @@
     [self.navigationController popViewControllerAnimated:YES];
     //NSLog(@"%@", self.navigationController.viewControllers);
 }
+
+
+#pragma mark - CoreDataContext getter
+
+- (NSManagedObjectContext *)coreDataContext
+{
+    UIApplication *application = [UIApplication sharedApplication];
+    NSPersistentContainer *container = ((AppDelegate *) (application.delegate)).coreDataController.persistentContainer;
+    NSManagedObjectContext *context = container.viewContext;
+    
+    return context;
+}
+
 
 @end
