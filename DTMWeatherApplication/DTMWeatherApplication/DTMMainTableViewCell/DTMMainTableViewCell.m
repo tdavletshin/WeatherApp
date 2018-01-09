@@ -9,14 +9,15 @@
 #import "DTMMainTableViewCell.h"
 #import <Masonry/Masonry.h>
 
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 static const CGFloat DTMElementsOffset = 10.f;
 static const CGSize DTMWeatherImageViewSize = {50.f, 50.f};
+static const CGSize DTMDetailButtonSize = {50.f, 50.f};
 static NSString *const DTMTestDate = @"07/01/2018 15:40";
 static NSString *const DTMTemperatureLabelFontName = @"Georgia-BoldItalic";
 static NSString *const DTMCityLabelFontName = @"Courier-Bold";
 static NSString *const DTMDateLabelFontName = @"Georgia-BoldItalic";
+static CGFloat DTMCellAlphaValue = 0.7;
 
 @implementation DTMMainTableViewCell
 
@@ -24,7 +25,6 @@ static NSString *const DTMDateLabelFontName = @"Georgia-BoldItalic";
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (!self) return nil;
-    
     
     _weatherImageView = [[UIImageView alloc] init];
     [self.contentView addSubview:_weatherImageView];
@@ -42,10 +42,19 @@ static NSString *const DTMDateLabelFontName = @"Georgia-BoldItalic";
     _dateLabel.font = [UIFont fontWithName: DTMDateLabelFontName size:14.0];
     [self.contentView addSubview:_dateLabel];
     
+    _detailButton = [[UIButton alloc] init];
+    [_detailButton setImage:[UIImage imageNamed:@"arrow.jpg"] forState:UIControlStateNormal];
+    _detailButton.imageView.layer.cornerRadius = DTMDetailButtonSize.height/2;
+    [self.contentView addSubview:_detailButton];
+    
+    [self.contentView setBackgroundColor:UIColor.clearColor];
+    [self.backgroundView setBackgroundColor:UIColor.clearColor];
+    [self setBackgroundColor:UIColor.clearColor];
     
     self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell.jpg"]];
+    self.backgroundView.alpha = DTMCellAlphaValue;
     
-    self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"selectedCell.png"]];
+    self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell.jpg"]];
     
     return self;
 }
@@ -55,18 +64,22 @@ static NSString *const DTMDateLabelFontName = @"Georgia-BoldItalic";
 {
     [super layoutSubviews];
     
+    
     self.weatherImageView.frame = CGRectMake(DTMElementsOffset, DTMElementsOffset, DTMWeatherImageViewSize.width, DTMWeatherImageViewSize.height);
     
-    self.temperatureLabel.frame = CGRectMake(CGRectGetMaxX(self.weatherImageView.frame) + DTMElementsOffset, DTMElementsOffset, 2 * DTMWeatherImageViewSize.width, CGRectGetMaxY(self.contentView.frame) - 2 * DTMElementsOffset);
+    CGSize temperatureLabelSize = [self.temperatureLabel sizeThatFits:CGSizeMake(2 * DTMWeatherImageViewSize.width, CGFLOAT_MAX)];
     
-    CGFloat cityLabelWidth = CGRectGetMaxX(self.contentView.frame) - CGRectGetMaxX(self.temperatureLabel.frame) - 2 * DTMElementsOffset;
+    self.temperatureLabel.frame = CGRectMake(CGRectGetMaxX(self.weatherImageView.frame) + DTMElementsOffset, DTMElementsOffset, 1.5 * DTMWeatherImageViewSize.width, temperatureLabelSize.height);
+    
+    CGFloat cityLabelWidth = CGRectGetMaxX(self.contentView.frame) - CGRectGetMaxX(self.temperatureLabel.frame) - 4 * DTMElementsOffset - DTMDetailButtonSize.width;
     
     CGSize cityLabelSize = [self.cityLabel sizeThatFits:CGSizeMake(cityLabelWidth, CGFLOAT_MAX)];
     
-    self.cityLabel.frame = CGRectMake(CGRectGetMaxX(self.temperatureLabel.frame) + DTMElementsOffset, DTMElementsOffset, cityLabelWidth, cityLabelSize.height);
+    self.cityLabel.frame = CGRectMake(CGRectGetMaxX(self.temperatureLabel.frame) +  DTMElementsOffset, DTMElementsOffset, cityLabelWidth, cityLabelSize.height);
     
     self.dateLabel.frame = CGRectMake(CGRectGetMaxX(self.temperatureLabel.frame) + DTMElementsOffset, CGRectGetMaxY(self.cityLabel.frame) + DTMElementsOffset, cityLabelWidth, DTMWeatherImageViewSize.width/2);
     
+    self.detailButton.frame = CGRectMake(CGRectGetMaxX(self.cityLabel.frame) + DTMElementsOffset, DTMElementsOffset, DTMDetailButtonSize.width, DTMDetailButtonSize.height);
 }
 
 
@@ -79,12 +92,14 @@ static NSString *const DTMDateLabelFontName = @"Georgia-BoldItalic";
 
 + (CGFloat)heightForCellForCityName: (NSString *_Nonnull)cityName
 {
-    DTMMainTableViewCell *testCell = [[DTMMainTableViewCell alloc] init];
+    DTMMainTableViewCell *testCell = [[DTMMainTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"IDENTIFY"];
+    
     testCell.cityLabel.text = cityName;
     testCell.dateLabel.text = DTMTestDate;
+    
     [testCell layoutSubviews];
     
-    CGFloat height = CGRectGetMaxY(testCell.dateLabel.frame) + DTMElementsOffset;
+    CGFloat height = testCell.cityLabel.frame.size.height + testCell.dateLabel.frame.size.height + 3 * DTMElementsOffset;
     
     if (CGRectGetMaxY(testCell.imageView.frame) > height) return CGRectGetMaxY(testCell.imageView.frame);
     

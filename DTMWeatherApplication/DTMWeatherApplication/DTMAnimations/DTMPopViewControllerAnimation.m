@@ -8,6 +8,8 @@
 
 #import "DTMPopViewControllerAnimation.h"
 
+static const NSInteger DTMAnimationShift = 4;
+
 @implementation DTMPopViewControllerAnimation
 
 - (void)animateTransition:(nonnull id<UIViewControllerContextTransitioning>)transitionContext
@@ -18,7 +20,7 @@
     
     [containerView addSubview:destinationViewController.view];
     
-    destinationViewController.view.center = CGPointMake(sourceViewController.view.center.x * (-2), sourceViewController.view.center.y);
+    destinationViewController.view.center = CGPointMake(sourceViewController.view.center.x * DTMAnimationShift, sourceViewController.view.center.y);
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:
      ^{

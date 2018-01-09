@@ -14,6 +14,7 @@
 @property (nonatomic, strong, nonnull) UILabel *cityLabel;
 @property (nonatomic, strong, nonnull) UILabel *dateLabel;
 @property (nonatomic, strong, nonnull) UIImageView *weatherImageView;
+@property (nonatomic, strong, nonnull) UIButton *detailButton;
 
 + (CGFloat)heightForCellForCityName: (NSString *_Nonnull)cityName;
 

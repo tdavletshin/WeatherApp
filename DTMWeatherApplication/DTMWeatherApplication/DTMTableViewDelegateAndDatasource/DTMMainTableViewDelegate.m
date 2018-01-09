@@ -12,6 +12,7 @@
 #import <CoreData/CoreData.h>
 #import "DTMMainTableViewCell.h"
 
+
 const CGFloat DTMCellInterval = 22.0;
 extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
 
@@ -19,33 +20,17 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
 
 @property (nonatomic, strong) NSManagedObjectContext *coreDataContext;
 @property (nonatomic, strong) NSFetchRequest *fetchRequest;
-@property (nonatomic, copy, nonnull) NSArray<DTMWeatherDataModel *> *dataForTable;
 
 @end
 
 @implementation DTMMainTableViewDelegate 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cityName = self.dataForTable[(int)indexPath.row].city_name;
-    return [DTMMainTableViewCell heightForCellForCityName: cityName];
+    NSString *cityName = self.dataForTable[self.dataForTable.count - indexPath.section - 1].city_name;
+    CGFloat height = [DTMMainTableViewCell heightForCellForCityName: cityName];
+    return height;
 }
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -59,31 +44,40 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
     return view;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGRect frame = cell.frame;
+    [cell setFrame:CGRectMake(0, tableView.frame.size.height, frame.size.width, frame.size.height)];
+    [   UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionTransitionCrossDissolve  animations:
+        ^{
+             [cell setFrame:frame];
+         }
+                     completion:^(BOOL finished) {}
+     ];
+}
 
-#pragma mark - Main Table View Data Source
+
+#pragma mark - Data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.dataForTable.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
-{
-    DTMWeatherDataModel *data = self.dataForTable[indexPath.section];
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    //for inversion order of cells
+    DTMWeatherDataModel *data = self.dataForTable[self.dataForTable.count - indexPath.section - 1];
     
     DTMMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DTM_CUSTOM_CELL_REUSE_IDENTIFIER forIndexPath:indexPath];
-    
-    cell.accessoryType = UITableViewCellAccessoryDetailButton;
-    
+
     if ((int)data.temperature > 0)
-        cell.temperatureLabel.text = [NSString stringWithFormat:@" +%d \u00B0C", (int)data.temperature];
+        cell.temperatureLabel.text = [NSString stringWithFormat:@"+%d \u00B0C", (int)data.temperature];
     else
-        cell.temperatureLabel.text = [NSString stringWithFormat:@" %d \u00B0C", (int)data.temperature];
+        cell.temperatureLabel.text = [NSString stringWithFormat:@"%d \u00B0C", (int)data.temperature];
     
     cell.cityLabel.text = data.city_name;
     
@@ -91,10 +85,9 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
     [formatter setDateFormat:@"dd/MM/yyyy  HH:mm"];
     cell.dateLabel.text = [formatter stringFromDate:data.date];
     
-    
     NSString *imageName = [[NSString alloc] initWithFormat:@"%@.png", data.icon_id];
     cell.weatherImageView.image = [UIImage imageNamed:imageName];
-        
+    
     return cell;
 }
 
@@ -127,5 +120,22 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
         self.dataForTable = result;
     }
 }
+
+
+- (void)removeElementFromDataModelForIndex:(NSUInteger)index
+{
+    DTMWeatherDataModel *data = self.dataForTable[self.dataForTable.count - index - 1];
+    
+    if(!data) return;
+    
+    [self.coreDataContext deleteObject:data];
+        
+    if ([data isDeleted])
+    {
+        [self.coreDataContext save:nil];
+        [self updateDataForMainTableView];
+    }
+}
+
 
 @end

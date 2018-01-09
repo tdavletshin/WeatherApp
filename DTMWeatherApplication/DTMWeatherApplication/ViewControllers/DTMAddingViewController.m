@@ -29,19 +29,19 @@
     
     [self setUpNavigationBar];
     
-//        DTMWeatherDataModel *data = [NSEntityDescription insertNewObjectForEntityForName:@"DTMWeatherDataModel" inManagedObjectContext:self.coreDataContext];
-//        data.city_name = @"NU nnnnn nnn nnn nnn nnn city";
-//        data.temperature = -5;
-//        data.date = [NSDate date];
-//        data.icon_id = @"10d";
-//    
-//        NSError *error = nil;
-//    
-//        if (![data.managedObjectContext save:&error])
-//        {
-//            NSLog(@"не удалось выполнить fetch request");
-//            NSLog(@"%@ %@", error, error.localizedDescription);
-//        }
+        DTMWeatherDataModel *data = [NSEntityDescription insertNewObjectForEntityForName:@"DTMWeatherDataModel" inManagedObjectContext:self.coreDataContext];
+        data.city_name = @"NU city";
+        data.temperature = -55;
+        data.date = [NSDate date];
+        data.icon_id = @"01d";
+
+        NSError *error = nil;
+
+        if (![data.managedObjectContext save:&error])
+        {
+            NSLog(@"не удалось выполнить fetch request");
+            NSLog(@"%@ %@", error, error.localizedDescription);
+        }
 
 }
 

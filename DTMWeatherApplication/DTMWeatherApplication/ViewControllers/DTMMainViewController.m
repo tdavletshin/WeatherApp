@@ -98,8 +98,11 @@ NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER = @"DTM.Custom.Weather.Cell";
     self.navigationItem.title = @"Weather for date";
     //self.navigationItem.prompt = @"hello";
     UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(transiteToAddingViewController)];
+    UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action: @selector(deleteUpperCell)];
     self.navigationItem.leftBarButtonItem = addItem;
+    self.navigationItem.rightBarButtonItem = deleteItem;
     self.navigationItem.leftBarButtonItem.tintColor = UIColor.whiteColor;
+    self.navigationItem.rightBarButtonItem.tintColor = UIColor.whiteColor;
 }
 
 #pragma mark - Transition to adding view controller
@@ -107,6 +110,31 @@ NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER = @"DTM.Custom.Weather.Cell";
 - (void)transiteToAddingViewController
 {
     [self.navigationController pushViewController:[DTMAddingViewController new] animated:YES];
+}
+
+#pragma mark - Delete Upper Cell
+
+- (void)deleteUpperCell
+{
+    if (![self.mainTableView numberOfSections]) return;
+    
+    NSIndexPath *deleteIndexPath = [self.mainTableView indexPathForSelectedRow];
+    
+    if (deleteIndexPath == nil)
+    {
+        [self.mainTableViewDelegateAndDataSource removeElementFromDataModelForIndex:0];
+        NSIndexSet *deleteIndexSet = [NSIndexSet indexSetWithIndex:0];
+        [self.mainTableView deleteSections:deleteIndexSet withRowAnimation:UITableViewRowAnimationNone];
+    }
+    
+    else
+    {
+        NSUInteger deleteIndex = deleteIndexPath.section;
+        
+        [self.mainTableViewDelegateAndDataSource removeElementFromDataModelForIndex:deleteIndex];
+        NSIndexSet *deleteIndexSet = [NSIndexSet indexSetWithIndex:deleteIndex];
+        [self.mainTableView deleteSections:deleteIndexSet withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 
 @end

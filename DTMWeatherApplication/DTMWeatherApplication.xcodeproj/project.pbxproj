@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE21FD5920055883000D729D /* gradient2_inline.png in Resources */ = {isa = PBXBuildFile; fileRef = CE21FD5820055882000D729D /* gradient2_inline.png */; };
 		CE3621661FEFDB560065BCB1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3621651FEFDB560065BCB1 /* AppDelegate.m */; };
 		CE36216F1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE36216D1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodeld */; };
 		CE3621711FEFDB560065BCB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE3621701FEFDB560065BCB1 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		CEDF0F942003F297001176D3 /* 10d.png in Resources */ = {isa = PBXBuildFile; fileRef = CEDF0F822003F296001176D3 /* 10d.png */; };
 		CEDF0F952003F297001176D3 /* 03d.png in Resources */ = {isa = PBXBuildFile; fileRef = CEDF0F832003F296001176D3 /* 03d.png */; };
 		CEDF0F962003F297001176D3 /* 09d.png in Resources */ = {isa = PBXBuildFile; fileRef = CEDF0F842003F297001176D3 /* 09d.png */; };
+		CEDF0F99200433BE001176D3 /* arrow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEDF0F98200433BE001176D3 /* arrow.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE21FD5820055882000D729D /* gradient2_inline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gradient2_inline.png; path = DTMWeatherApplication/Images/gradient2_inline.png; sourceTree = SOURCE_ROOT; };
 		CE3621611FEFDB560065BCB1 /* DTMWeatherApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTMWeatherApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3621641FEFDB560065BCB1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CE3621651FEFDB560065BCB1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -125,6 +128,7 @@
 		CEDF0F822003F296001176D3 /* 10d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 10d.png; path = DTMWeatherApplication/Images/weatherIcons/10d.png; sourceTree = SOURCE_ROOT; };
 		CEDF0F832003F296001176D3 /* 03d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 03d.png; path = DTMWeatherApplication/Images/weatherIcons/03d.png; sourceTree = SOURCE_ROOT; };
 		CEDF0F842003F297001176D3 /* 09d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 09d.png; path = DTMWeatherApplication/Images/weatherIcons/09d.png; sourceTree = SOURCE_ROOT; };
+		CEDF0F98200433BE001176D3 /* arrow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = arrow.jpg; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +304,8 @@
 			children = (
 				CEDF0F9720040100001176D3 /* weatherIcons */,
 				CEDF0F6B2003DD3D001176D3 /* selectedCell.png */,
+				CE21FD5820055882000D729D /* gradient2_inline.png */,
+				CEDF0F98200433BE001176D3 /* arrow.jpg */,
 				CEDF0F692003DC63001176D3 /* cell.jpg */,
 				CEDF0F672003C8DC001176D3 /* paper.jpg */,
 			);
@@ -443,6 +449,7 @@
 				CEDF0F892003F297001176D3 /* 11n.png in Resources */,
 				CEDF0F8F2003F297001176D3 /* 50d.png in Resources */,
 				CE3621711FEFDB560065BCB1 /* Assets.xcassets in Resources */,
+				CEDF0F99200433BE001176D3 /* arrow.jpg in Resources */,
 				CEDF0F6C2003DD3D001176D3 /* selectedCell.png in Resources */,
 				CEDF0F8C2003F297001176D3 /* 01d.png in Resources */,
 				CEDF0F8E2003F297001176D3 /* 01n.png in Resources */,
@@ -457,6 +464,7 @@
 				CEDF0F8A2003F297001176D3 /* 02d.png in Resources */,
 				CEDF0F882003F297001176D3 /* 10n.png in Resources */,
 				CEDF0F942003F297001176D3 /* 10d.png in Resources */,
+				CE21FD5920055883000D729D /* gradient2_inline.png in Resources */,
 				CEDF0F6A2003DC63001176D3 /* cell.jpg in Resources */,
 				CEDF0F862003F297001176D3 /* 50n.png in Resources */,
 			);

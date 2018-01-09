@@ -14,6 +14,9 @@
 
 @interface DTMMainTableViewDelegate : NSObject <UITableViewDelegate, DTMExtendedUITableViewDataSource>
 
+@property (nonatomic, copy, nonnull) NSArray<DTMWeatherDataModel *> *dataForTable;
+
 - (void)updateDataForMainTableView;
+- (void)removeElementFromDataModelForIndex:(NSUInteger) index;
 
 @end
