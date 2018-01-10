@@ -17,7 +17,7 @@
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
-const CGFloat NavigationBarFontSize = 36.0;
+const CGFloat NavigationBarFontSize = 26.0;
 const int NavigationBarColor = 0x00aeda;
 NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER = @"DTM.Custom.Weather.Cell";
 
@@ -25,7 +25,7 @@ NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER = @"DTM.Custom.Weather.Cell";
 
 @property (nonatomic, strong) UITableView *mainTableView;
 @property (nonatomic, strong) id<UITableViewDelegate, DTMExtendedUITableViewDataSource> mainTableViewDelegateAndDataSource;
-@property (nonatomic, strong, nullable) UIImage *backgroundImage;
+//@property (nonatomic, strong, nullable) UIImage *backgroundImage;
 
 @end
 
@@ -46,7 +46,6 @@ NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER = @"DTM.Custom.Weather.Cell";
     self.mainTableView.backgroundView.contentMode = UIViewContentModeScaleAspectFit;
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.mainTableView];
-    
 }
 
 
@@ -56,7 +55,6 @@ NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER = @"DTM.Custom.Weather.Cell";
     [self.mainTableView beginUpdates];
 }
 
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -65,10 +63,8 @@ NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER = @"DTM.Custom.Weather.Cell";
     [self.mainTableView reloadData];
 }
 
-
 - (void)viewDidLayoutSubviews
 {
-    
     [   self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make)
         {
              make.top.equalTo(self.view.mas_top);

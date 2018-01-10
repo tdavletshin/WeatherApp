@@ -10,12 +10,10 @@
 #import "AppDelegate.h"
 #import "DTMWeatherDataModel+CoreDataClass.h"
 #import "DTMWeatherDataModel+CoreDataProperties.h"
-
+#import "DTMJSONToDTMWeatherDataModelMapper.h"
 
 
 @interface DTMAddingViewController ()
-
-@property (nonatomic, strong) NSManagedObjectContext *coreDataContext;
 
 @end
 
@@ -29,20 +27,47 @@
     
     [self setUpNavigationBar];
     
-        DTMWeatherDataModel *data = [NSEntityDescription insertNewObjectForEntityForName:@"DTMWeatherDataModel" inManagedObjectContext:self.coreDataContext];
-        data.city_name = @"NU city";
-        data.temperature = -55;
-        data.date = [NSDate date];
-        data.icon_id = @"01d";
+//        DTMWeatherDataModel *data = [NSEntityDescription insertNewObjectForEntityForName:@"DTMWeatherDataModel" inManagedObjectContext:self.coreDataContext];
+//        data.city_name = @"NU city";
+//        data.temperature = -55;
+//        data.date = [NSDate date];
+//        data.icon_id = @"01d";
+//
+//        NSError *error = nil;
+//
+//        if (![data.managedObjectContext save:&error])
+//        {
+//            NSLog(@"не удалось выполнить fetch request");
+//            NSLog(@"%@ %@", error, error.localizedDescription);
+//        }
 
-        NSError *error = nil;
-
-        if (![data.managedObjectContext save:&error])
+    // 1
+    NSString *dataUrl = @"https://api.openweathermap.org/data/2.5/weather?id=1497337&units=metric&APPID=9174e54fa42ba3f00260dfec4cc770cf";
+    NSURL *url = [NSURL URLWithString:dataUrl];
+    
+    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
+                                          dataTaskWithURL:url completionHandler:
+    ^(NSData *data, NSURLResponse *response, NSError *error)
+    {
+        if (error)
         {
-            NSLog(@"не удалось выполнить fetch request");
-            NSLog(@"%@ %@", error, error.localizedDescription);
+            NSLog(@"error with download task");
+            exit(0);
         }
-
+        
+        dispatch_async(dispatch_get_main_queue(),
+        ^{
+            [DTMJSONToDTMWeatherDataModelMapper saveInCoreDataDTMWeatherDataModelFromJSON:data competion: ^(NSError *error)
+            {
+                if (error)
+                {
+                    NSLog(@"error with saving core data context");
+                }
+            }];
+        });
+    }];
+    
+    [downloadTask resume];
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,7 +92,6 @@
 - (void)transiteToMainViewController
 {
     [self.navigationController popViewControllerAnimated:YES];
-    //NSLog(@"%@", self.navigationController.viewControllers);
 }
 
 

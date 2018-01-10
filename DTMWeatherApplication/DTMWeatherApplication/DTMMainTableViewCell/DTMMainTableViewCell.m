@@ -17,7 +17,7 @@ static NSString *const DTMTestDate = @"07/01/2018 15:40";
 static NSString *const DTMTemperatureLabelFontName = @"Georgia-BoldItalic";
 static NSString *const DTMCityLabelFontName = @"Courier-Bold";
 static NSString *const DTMDateLabelFontName = @"Georgia-BoldItalic";
-static CGFloat DTMCellAlphaValue = 0.7;
+static CGFloat DTMCellAlphaValue = 0.5;
 
 @implementation DTMMainTableViewCell
 
@@ -82,13 +82,6 @@ static CGFloat DTMCellAlphaValue = 0.7;
     self.detailButton.frame = CGRectMake(CGRectGetMaxX(self.cityLabel.frame) + DTMElementsOffset, DTMElementsOffset, DTMDetailButtonSize.width, DTMDetailButtonSize.height);
 }
 
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 + (CGFloat)heightForCellForCityName: (NSString *_Nonnull)cityName
 {
