@@ -11,9 +11,20 @@
 #import "DTMWeatherDataModel+CoreDataClass.h"
 #import "DTMWeatherDataModel+CoreDataProperties.h"
 #import "DTMJSONToDTMWeatherDataModelMapper.h"
+#import <Masonry/Masonry.h>
+#import "DTMAddingTableViewDelegate.h"
+#import "DTMAddingTableViewDataSource.h"
+#import "DTMAddingTableViewCell.h"
 
+
+extern NSString *const DTM_ADDING_CELL_IDENTIFIER;
 
 @interface DTMAddingViewController ()
+
+@property (nonatomic, strong) UITableView *addingCitiesTableView;
+@property (nonatomic, strong) id<UITableViewDelegate> addingCitiesTableViewDelegate;
+@property (nonatomic, strong) id<UITableViewDataSource> addingCitiesTableViewDataSource;
+
 
 @end
 
@@ -27,52 +38,37 @@
     
     [self setUpNavigationBar];
     
-//        DTMWeatherDataModel *data = [NSEntityDescription insertNewObjectForEntityForName:@"DTMWeatherDataModel" inManagedObjectContext:self.coreDataContext];
-//        data.city_name = @"NU city";
-//        data.temperature = -55;
-//        data.date = [NSDate date];
-//        data.icon_id = @"01d";
-//
-//        NSError *error = nil;
-//
-//        if (![data.managedObjectContext save:&error])
-//        {
-//            NSLog(@"не удалось выполнить fetch request");
-//            NSLog(@"%@ %@", error, error.localizedDescription);
-//        }
+    self.addingCitiesTableView = [[UITableView alloc] init];
+    self.addingCitiesTableViewDelegate = [[DTMAddingTableViewDelegate alloc] init];
+    self.addingCitiesTableView.delegate = self.addingCitiesTableViewDelegate;
+    self.addingCitiesTableViewDataSource = [[DTMAddingTableViewDataSource alloc] init];
+    self.addingCitiesTableView.dataSource = self.addingCitiesTableViewDataSource;
+    [self.addingCitiesTableView registerClass:[DTMAddingTableViewCell class] forCellReuseIdentifier:DTM_ADDING_CELL_IDENTIFIER];
+    self.addingCitiesTableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paper.jpg"]];
+    self.addingCitiesTableView.backgroundView.contentMode = UIViewContentModeScaleAspectFit;
+    self.addingCitiesTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.addingCitiesTableView];
+    
+    
 
-    // 1
-    NSString *dataUrl = @"https://api.openweathermap.org/data/2.5/weather?id=1497337&units=metric&APPID=9174e54fa42ba3f00260dfec4cc770cf";
-    NSURL *url = [NSURL URLWithString:dataUrl];
-    
-    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
-                                          dataTaskWithURL:url completionHandler:
-    ^(NSData *data, NSURLResponse *response, NSError *error)
-    {
-        if (error)
-        {
-            NSLog(@"error with download task");
-            exit(0);
-        }
-        
-        dispatch_async(dispatch_get_main_queue(),
-        ^{
-            [DTMJSONToDTMWeatherDataModelMapper saveInCoreDataDTMWeatherDataModelFromJSON:data competion: ^(NSError *error)
-            {
-                if (error)
-                {
-                    NSLog(@"error with saving core data context");
-                }
-            }];
-        });
-    }];
-    
-    [downloadTask resume];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+
+- (void)viewDidLayoutSubviews
+{
+    [   self.addingCitiesTableView mas_makeConstraints:^(MASConstraintMaker *make)
+         {
+             make.top.equalTo(self.view.mas_top);
+             make.bottom.equalTo(self.view.mas_bottom);
+             make.right.equalTo(self.view.mas_right);
+             make.left.equalTo(self.view.mas_left);
+         }
+     ];
 }
 
 #pragma mark - set up navigation bar
@@ -94,17 +90,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-#pragma mark - CoreDataContext getter
-
-- (NSManagedObjectContext *)coreDataContext
-{
-    UIApplication *application = [UIApplication sharedApplication];
-    NSPersistentContainer *container = ((AppDelegate *) (application.delegate)).coreDataController.persistentContainer;
-    NSManagedObjectContext *context = container.viewContext;
-    
-    return context;
-}
 
 
 @end

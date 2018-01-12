@@ -10,7 +10,19 @@
 
 @implementation DTMCoreDataController
 
-- (instancetype)init
+static DTMCoreDataController *sharedInstance = nil;
+
++ (DTMCoreDataController *)sharedController
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken,
+    ^{
+        sharedInstance = [[DTMCoreDataController alloc] initSharedInstance];
+    });
+    return sharedInstance;
+}
+
+- (instancetype)initSharedInstance
 {
     self = [super init];
     

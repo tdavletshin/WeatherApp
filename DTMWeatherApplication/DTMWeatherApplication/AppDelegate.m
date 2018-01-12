@@ -9,10 +9,12 @@
 #import "AppDelegate.h"
 #import "DTMNavigationControllerDelegate.h"
 #import "DTMMainViewController.h"
+#import "DTMCoreDataController.h"
 
+#import "DTMAddingViewController.h" //  *for test*
 
 @interface AppDelegate ()
-@property (nonatomic, strong) UINavigationController *navigationController;
+
 @property (nonatomic, strong, nullable) id<UINavigationControllerDelegate> navigationControllerDelegate;
 @end
 
@@ -21,7 +23,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.coreDataController = [[DTMCoreDataController alloc] init];
     
     DTMMainViewController *firstViewController = [[DTMMainViewController alloc] init];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
@@ -31,6 +32,10 @@
    
     self.window = [[UIWindow alloc] init];
     self.window.rootViewController = self.navigationController;
+//  *for test*
+//    self.window.rootViewController = [DTMAddingViewController new];
+//  *end test*
+    
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -62,7 +67,9 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
-    [self.coreDataController saveContext];
+    
+    DTMCoreDataController *coreDataController = [DTMCoreDataController sharedController];
+    [coreDataController saveContext];
 }
 
 

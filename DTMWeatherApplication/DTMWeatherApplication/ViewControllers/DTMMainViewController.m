@@ -52,7 +52,6 @@ NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER = @"DTM.Custom.Weather.Cell";
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    [self.mainTableView beginUpdates];
 }
 
 - (void)viewWillAppear:(BOOL)animated

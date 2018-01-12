@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "DTMCoreDataController/DTMCoreDataController.h"
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-@property (nonatomic, strong) DTMCoreDataController *coreDataController;
+@property (nonatomic, strong) UINavigationController *navigationController;
 
 @end
 

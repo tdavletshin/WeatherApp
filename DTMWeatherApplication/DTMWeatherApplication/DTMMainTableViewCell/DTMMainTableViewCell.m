@@ -48,7 +48,6 @@ static CGFloat DTMCellAlphaValue = 0.5;
     [self.contentView addSubview:_detailButton];
     
     [self.contentView setBackgroundColor:UIColor.clearColor];
-    [self.backgroundView setBackgroundColor:UIColor.clearColor];
     [self setBackgroundColor:UIColor.clearColor];
     
     self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell.jpg"]];
@@ -63,7 +62,6 @@ static CGFloat DTMCellAlphaValue = 0.5;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
     
     self.weatherImageView.frame = CGRectMake(DTMElementsOffset, DTMElementsOffset, DTMWeatherImageViewSize.width, DTMWeatherImageViewSize.height);
     

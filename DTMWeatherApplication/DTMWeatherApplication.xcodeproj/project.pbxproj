@@ -15,20 +15,25 @@
 		CE21FD642006A96F000D729D /* DTMWeatherDataModel+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21FD622006A96E000D729D /* DTMWeatherDataModel+CoreDataClass.m */; };
 		CE21FD652006A96F000D729D /* DTMWeatherDataModel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21FD632006A96F000D729D /* DTMWeatherDataModel+CoreDataProperties.m */; };
 		CE21FD682006C71D000D729D /* DTMJSONToDTMWeatherDataModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21FD672006C71D000D729D /* DTMJSONToDTMWeatherDataModelMapper.m */; };
+		CE21FD6D20078F74000D729D /* DTMCityDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21FD6C20078F74000D729D /* DTMCityDataModel.m */; };
+		CE21FD7120079542000D729D /* DTMAddingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21FD7020079542000D729D /* DTMAddingTableViewDelegate.m */; };
+		CE21FD7420079571000D729D /* DTMAddingTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21FD7320079571000D729D /* DTMAddingTableViewDataSource.m */; };
+		CE21FD7B20079647000D729D /* DTMAddingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21FD7A20079647000D729D /* DTMAddingTableViewCell.m */; };
+		CE21FD852008132D000D729D /* DTMCityDataModelService.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21FD842008132D000D729D /* DTMCityDataModelService.m */; };
 		CE3621661FEFDB560065BCB1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3621651FEFDB560065BCB1 /* AppDelegate.m */; };
 		CE36216F1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE36216D1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodeld */; };
 		CE3621711FEFDB560065BCB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE3621701FEFDB560065BCB1 /* Assets.xcassets */; };
 		CE3621771FEFDB560065BCB1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3621761FEFDB560065BCB1 /* main.m */; };
 		CE3621811FEFDB560065BCB1 /* DTMWeatherApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3621801FEFDB560065BCB1 /* DTMWeatherApplicationTests.m */; };
 		CE36218C1FEFDB560065BCB1 /* DTMWeatherApplicationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE36218B1FEFDB560065BCB1 /* DTMWeatherApplicationUITests.m */; };
+		CE41E78320081F8300F8F852 /* city.list.json in Resources */ = {isa = PBXBuildFile; fileRef = CE41E78220081F8200F8F852 /* city.list.json */; };
+		CE41E7882008372300F8F852 /* DTMJSONToDTMCityDataModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41E7872008372300F8F852 /* DTMJSONToDTMCityDataModelMapper.m */; };
 		CED094FE1FF6DD9A00B8FCC4 /* DTMCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED094FD1FF6DD9A00B8FCC4 /* DTMCoreDataController.m */; };
 		CED095021FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CED095011FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m */; };
 		CED095091FF704D700B8FCC4 /* DTMPopViewControllerAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CED095081FF704D700B8FCC4 /* DTMPopViewControllerAnimation.m */; };
 		CED0950C1FF7051400B8FCC4 /* DTMPushViewControllerAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CED0950B1FF7051400B8FCC4 /* DTMPushViewControllerAnimation.m */; };
 		CED095101FF936EB00B8FCC4 /* DTMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED0950F1FF936EB00B8FCC4 /* DTMMainViewController.m */; };
-		CED095141FF941A200B8FCC4 /* Expecta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED095131FF941A200B8FCC4 /* Expecta.framework */; };
 		CED095161FF941BC00B8FCC4 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED095151FF941BC00B8FCC4 /* Masonry.framework */; };
-		CED095181FF941C600B8FCC4 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED095171FF941C600B8FCC4 /* OCMock.framework */; };
 		CED0951C1FF95C5E00B8FCC4 /* DTMMainTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CED0951B1FF95C5E00B8FCC4 /* DTMMainTableViewDelegate.m */; };
 		CED095251FFC405800B8FCC4 /* DTMAddingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED095241FFC405800B8FCC4 /* DTMAddingViewController.m */; };
 		CED0953A2002938000B8FCC4 /* DTMMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CED095392002938000B8FCC4 /* DTMMainTableViewCell.m */; };
@@ -83,6 +88,16 @@
 		CE21FD632006A96F000D729D /* DTMWeatherDataModel+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DTMWeatherDataModel+CoreDataProperties.m"; sourceTree = "<group>"; };
 		CE21FD662006C71D000D729D /* DTMJSONToDTMWeatherDataModelMapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMJSONToDTMWeatherDataModelMapper.h; sourceTree = "<group>"; };
 		CE21FD672006C71D000D729D /* DTMJSONToDTMWeatherDataModelMapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMJSONToDTMWeatherDataModelMapper.m; sourceTree = "<group>"; };
+		CE21FD6B20078F74000D729D /* DTMCityDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMCityDataModel.h; sourceTree = "<group>"; };
+		CE21FD6C20078F74000D729D /* DTMCityDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMCityDataModel.m; sourceTree = "<group>"; };
+		CE21FD6F20079542000D729D /* DTMAddingTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMAddingTableViewDelegate.h; sourceTree = "<group>"; };
+		CE21FD7020079542000D729D /* DTMAddingTableViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMAddingTableViewDelegate.m; sourceTree = "<group>"; };
+		CE21FD7220079571000D729D /* DTMAddingTableViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMAddingTableViewDataSource.h; sourceTree = "<group>"; };
+		CE21FD7320079571000D729D /* DTMAddingTableViewDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMAddingTableViewDataSource.m; sourceTree = "<group>"; };
+		CE21FD7920079647000D729D /* DTMAddingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMAddingTableViewCell.h; sourceTree = "<group>"; };
+		CE21FD7A20079647000D729D /* DTMAddingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMAddingTableViewCell.m; sourceTree = "<group>"; };
+		CE21FD832008132D000D729D /* DTMCityDataModelService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMCityDataModelService.h; sourceTree = "<group>"; };
+		CE21FD842008132D000D729D /* DTMCityDataModelService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMCityDataModelService.m; sourceTree = "<group>"; };
 		CE3621611FEFDB560065BCB1 /* DTMWeatherApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTMWeatherApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3621641FEFDB560065BCB1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CE3621651FEFDB560065BCB1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -96,6 +111,9 @@
 		CE3621871FEFDB560065BCB1 /* DTMWeatherApplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DTMWeatherApplicationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE36218B1FEFDB560065BCB1 /* DTMWeatherApplicationUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMWeatherApplicationUITests.m; sourceTree = "<group>"; };
 		CE36218D1FEFDB560065BCB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE41E78220081F8200F8F852 /* city.list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list.json; sourceTree = SOURCE_ROOT; };
+		CE41E7862008372300F8F852 /* DTMJSONToDTMCityDataModelMapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMJSONToDTMCityDataModelMapper.h; sourceTree = "<group>"; };
+		CE41E7872008372300F8F852 /* DTMJSONToDTMCityDataModelMapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMJSONToDTMCityDataModelMapper.m; sourceTree = "<group>"; };
 		CED094FC1FF6DD9A00B8FCC4 /* DTMCoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMCoreDataController.h; sourceTree = "<group>"; };
 		CED094FD1FF6DD9A00B8FCC4 /* DTMCoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMCoreDataController.m; sourceTree = "<group>"; };
 		CED095001FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMNavigationControllerDelegate.h; sourceTree = "<group>"; };
@@ -145,9 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CED095181FF941C600B8FCC4 /* OCMock.framework in Frameworks */,
 				CED095161FF941BC00B8FCC4 /* Masonry.framework in Frameworks */,
-				CED095141FF941A200B8FCC4 /* Expecta.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +195,44 @@
 			path = DTMJSONToDTMWeatherDataModelMapper;
 			sourceTree = "<group>";
 		};
+		CE21FD6A20078F19000D729D /* DTMCityDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE21FD6B20078F74000D729D /* DTMCityDataModel.h */,
+				CE21FD6C20078F74000D729D /* DTMCityDataModel.m */,
+			);
+			path = DTMCityDataModel;
+			sourceTree = "<group>";
+		};
+		CE21FD6E200794EF000D729D /* DTMAddingTableViewDelegateAndDatasource */ = {
+			isa = PBXGroup;
+			children = (
+				CE21FD6F20079542000D729D /* DTMAddingTableViewDelegate.h */,
+				CE21FD7020079542000D729D /* DTMAddingTableViewDelegate.m */,
+				CE21FD7220079571000D729D /* DTMAddingTableViewDataSource.h */,
+				CE21FD7320079571000D729D /* DTMAddingTableViewDataSource.m */,
+			);
+			path = DTMAddingTableViewDelegateAndDatasource;
+			sourceTree = "<group>";
+		};
+		CE21FD782007961C000D729D /* DTMAddingTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE21FD7920079647000D729D /* DTMAddingTableViewCell.h */,
+				CE21FD7A20079647000D729D /* DTMAddingTableViewCell.m */,
+			);
+			path = DTMAddingTableViewCell;
+			sourceTree = "<group>";
+		};
+		CE21FD7F20080870000D729D /* DTMCityDataModelService */ = {
+			isa = PBXGroup;
+			children = (
+				CE21FD832008132D000D729D /* DTMCityDataModelService.h */,
+				CE21FD842008132D000D729D /* DTMCityDataModelService.m */,
+			);
+			path = DTMCityDataModelService;
+			sourceTree = "<group>";
+		};
 		CE3621581FEFDB560065BCB1 = {
 			isa = PBXGroup;
 			children = (
@@ -203,18 +257,22 @@
 		CE3621631FEFDB560065BCB1 /* DTMWeatherApplication */ = {
 			isa = PBXGroup;
 			children = (
-				CE21FD692006C72D000D729D /* DTMJSONToDTMWeatherDataModelMapper */,
+				CE41E78920083B6800F8F852 /* DTMDataModels */,
+				CE41E7842008368C00F8F852 /* DTMMappers */,
+				CE21FD7F20080870000D729D /* DTMCityDataModelService */,
+				CE21FD782007961C000D729D /* DTMAddingTableViewCell */,
+				CE21FD6E200794EF000D729D /* DTMAddingTableViewDelegateAndDatasource */,
 				CEDF0F642003C4C3001176D3 /* Images */,
 				CE3621641FEFDB560065BCB1 /* AppDelegate.h */,
 				CE3621651FEFDB560065BCB1 /* AppDelegate.m */,
 				CE3621701FEFDB560065BCB1 /* Assets.xcassets */,
 				CE3621751FEFDB560065BCB1 /* Info.plist */,
 				CE3621761FEFDB560065BCB1 /* main.m */,
+				CE41E78220081F8200F8F852 /* city.list.json */,
 				CE36216D1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodeld */,
-				CED09537200292FC00B8FCC4 /* DTMMainTableViewCell */,
-				CED0952C1FFEAC2600B8FCC4 /* DTMWeatherinformationDataModel */,
 				CED0950D1FF9368100B8FCC4 /* ViewControllers */,
-				CED095191FF95BE600B8FCC4 /* DTMTableViewDelegateAndDatasource */,
+				CED095191FF95BE600B8FCC4 /* DTMMainTableViewDelegateAndDatasource */,
+				CED09537200292FC00B8FCC4 /* DTMMainTableViewCell */,
 				CED094FF1FF6FCDC00B8FCC4 /* DTMNavigationControllerDelegate */,
 				CED094FB1FF6DD5900B8FCC4 /* DTMCoreDataController */,
 				CED095031FF7046C00B8FCC4 /* DTMAnimations */,
@@ -240,6 +298,33 @@
 				CE36218D1FEFDB560065BCB1 /* Info.plist */,
 			);
 			path = DTMWeatherApplicationUITests;
+			sourceTree = "<group>";
+		};
+		CE41E7842008368C00F8F852 /* DTMMappers */ = {
+			isa = PBXGroup;
+			children = (
+				CE41E785200836C100F8F852 /* DTMJSONToDTMCityDataModelMapper */,
+				CE21FD692006C72D000D729D /* DTMJSONToDTMWeatherDataModelMapper */,
+			);
+			path = DTMMappers;
+			sourceTree = "<group>";
+		};
+		CE41E785200836C100F8F852 /* DTMJSONToDTMCityDataModelMapper */ = {
+			isa = PBXGroup;
+			children = (
+				CE41E7862008372300F8F852 /* DTMJSONToDTMCityDataModelMapper.h */,
+				CE41E7872008372300F8F852 /* DTMJSONToDTMCityDataModelMapper.m */,
+			);
+			path = DTMJSONToDTMCityDataModelMapper;
+			sourceTree = "<group>";
+		};
+		CE41E78920083B6800F8F852 /* DTMDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				CED0952C1FFEAC2600B8FCC4 /* DTMWeatherInformationDataModel */,
+				CE21FD6A20078F19000D729D /* DTMCityDataModel */,
+			);
+			path = DTMDataModels;
 			sourceTree = "<group>";
 		};
 		CED094FB1FF6DD5900B8FCC4 /* DTMCoreDataController */ = {
@@ -292,17 +377,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CED095191FF95BE600B8FCC4 /* DTMTableViewDelegateAndDatasource */ = {
+		CED095191FF95BE600B8FCC4 /* DTMMainTableViewDelegateAndDatasource */ = {
 			isa = PBXGroup;
 			children = (
 				CED0951A1FF95C5E00B8FCC4 /* DTMMainTableViewDelegate.h */,
 				CED0951B1FF95C5E00B8FCC4 /* DTMMainTableViewDelegate.m */,
 				CED095341FFED4E900B8FCC4 /* DTMExtendedUITableViewDataSourceProtocol.h */,
 			);
-			path = DTMTableViewDelegateAndDatasource;
+			path = DTMMainTableViewDelegateAndDatasource;
 			sourceTree = "<group>";
 		};
-		CED0952C1FFEAC2600B8FCC4 /* DTMWeatherinformationDataModel */ = {
+		CED0952C1FFEAC2600B8FCC4 /* DTMWeatherInformationDataModel */ = {
 			isa = PBXGroup;
 			children = (
 				CE21FD602006A96E000D729D /* DTMWeatherDataModel+CoreDataProperties.h */,
@@ -310,7 +395,7 @@
 				CE21FD612006A96E000D729D /* DTMWeatherDataModel+CoreDataClass.h */,
 				CE21FD622006A96E000D729D /* DTMWeatherDataModel+CoreDataClass.m */,
 			);
-			path = DTMWeatherinformationDataModel;
+			path = DTMWeatherInformationDataModel;
 			sourceTree = "<group>";
 		};
 		CED09537200292FC00B8FCC4 /* DTMMainTableViewCell */ = {
@@ -482,6 +567,7 @@
 				CEDF0F8D2003F297001176D3 /* 04n.png in Resources */,
 				CEDF0F922003F297001176D3 /* 13d.png in Resources */,
 				CEDF0F8B2003F297001176D3 /* 02n.png in Resources */,
+				CE41E78320081F8300F8F852 /* city.list.json in Resources */,
 				CEDF0F952003F297001176D3 /* 03d.png in Resources */,
 				CEDF0F682003C8DD001176D3 /* paper.jpg in Resources */,
 				CEDF0F8A2003F297001176D3 /* 02d.png in Resources */,
@@ -514,17 +600,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE21FD852008132D000D729D /* DTMCityDataModelService.m in Sources */,
 				CE21FD682006C71D000D729D /* DTMJSONToDTMWeatherDataModelMapper.m in Sources */,
+				CE21FD7120079542000D729D /* DTMAddingTableViewDelegate.m in Sources */,
 				CE21FD652006A96F000D729D /* DTMWeatherDataModel+CoreDataProperties.m in Sources */,
 				CED094FE1FF6DD9A00B8FCC4 /* DTMCoreDataController.m in Sources */,
+				CE21FD7B20079647000D729D /* DTMAddingTableViewCell.m in Sources */,
 				CED0953A2002938000B8FCC4 /* DTMMainTableViewCell.m in Sources */,
 				CE3621661FEFDB560065BCB1 /* AppDelegate.m in Sources */,
+				CE21FD7420079571000D729D /* DTMAddingTableViewDataSource.m in Sources */,
 				CED095251FFC405800B8FCC4 /* DTMAddingViewController.m in Sources */,
 				CE3621771FEFDB560065BCB1 /* main.m in Sources */,
+				CE21FD6D20078F74000D729D /* DTMCityDataModel.m in Sources */,
 				CED0951C1FF95C5E00B8FCC4 /* DTMMainTableViewDelegate.m in Sources */,
 				CE21FD642006A96F000D729D /* DTMWeatherDataModel+CoreDataClass.m in Sources */,
 				CED095091FF704D700B8FCC4 /* DTMPopViewControllerAnimation.m in Sources */,
 				CED095021FF6FD3100B8FCC4 /* DTMNavigationControllerDelegate.m in Sources */,
+				CE41E7882008372300F8F852 /* DTMJSONToDTMCityDataModelMapper.m in Sources */,
 				CED0950C1FF7051400B8FCC4 /* DTMPushViewControllerAnimation.m in Sources */,
 				CE36216F1FEFDB560065BCB1 /* DTMWeatherApplication.xcdatamodeld in Sources */,
 				CED095101FF936EB00B8FCC4 /* DTMMainViewController.m in Sources */,
