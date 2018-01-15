@@ -37,19 +37,52 @@ static DTMCityDataModelService *sharedInstance = nil;
     if (!self) return nil;
     
     NSString *nameOfFileWithData = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], @"city.list.json"];
-    
+
     NSData *jsonData = [NSData dataWithContentsOfFile: nameOfFileWithData];
-    
-    NSArray *preGeneralData = [DTMJSONToDTMCityDataModelMapper arrayOfDTMCityDataModelFromJSON:jsonData completion:^(NSError *error)
+
+    NSArray *preGeneralData = [DTMJSONToDTMCityDataModelMapper arrayOfDTMCityDataModelFromJSON:jsonData completionHandler:^(NSError *error)
     {
-        
+
         // to do: catch an error!
     }];
-    
+
     _generalData = [[NSArray alloc] initWithArray:preGeneralData copyItems:YES];
     _dataForTable = [[NSArray alloc] initWithArray:preGeneralData copyItems:YES];
     
     return self;
+}
+
+
+-(instancetype) initSharedInstanceWithFakeData
+{
+    self = [super init];
+    
+    if (!self) return nil;
+    
+    DTMCityDataModel *fakeModel = [[DTMCityDataModel alloc] init];
+    fakeModel.cityId = 131313;
+    fakeModel.cityName = @"FakeCityName";
+    fakeModel.countryName = @"FakeCountryName";
+    
+    _dataForTable = [NSArray arrayWithObject:fakeModel];
+    _generalData = [NSArray arrayWithObject:fakeModel];
+    
+    return self;
+}
+
+#pragma mark - Update Data For Table for search text
+
+- (void)updateDataForTableForSearchText:(NSString *) searchText
+{
+    if ([searchText isEqualToString:@""])
+    {
+        self.dataForTable = self.generalData;
+        return;
+    }
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cityName contains %@",searchText];
+    NSArray *newDataForTable = [NSMutableArray arrayWithArray:[self.generalData filteredArrayUsingPredicate:predicate]];
+    self.dataForTable = newDataForTable;
 }
 
 

@@ -11,11 +11,12 @@
 
 @implementation DTMJSONToDTMCityDataModelMapper
 
-+ (NSArray *)arrayOfDTMCityDataModelFromJSON:(NSData *)jsonData completion:(DTMMapperCompletionBlock)completion
++ (NSArray *)arrayOfDTMCityDataModelFromJSON:(NSData *)jsonData completionHandler:(DTMMapperCompletionBlock)completion
 {
     NSError *error;
     
     NSArray *arrayFromJsonData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    
     NSMutableArray <DTMCityDataModel*> *preResultData = [NSMutableArray array];
     
     for(NSDictionary *dictionary in arrayFromJsonData)

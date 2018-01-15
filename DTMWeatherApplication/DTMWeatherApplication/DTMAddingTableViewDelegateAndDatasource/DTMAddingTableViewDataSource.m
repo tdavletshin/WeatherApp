@@ -20,18 +20,18 @@ NSString *const DTM_ADDING_CELL_IDENTIFIER = @"DTM.ADDING_CELL.IDENTIFIER";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [DTMCityDataModelService sharedService].dataForTable.count;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [DTMCityDataModelService sharedService].dataForTable.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DTMCityDataModel *cityModel = [DTMCityDataModelService sharedService].dataForTable[indexPath.section];
+    DTMCityDataModel *cityModel = [DTMCityDataModelService sharedService].dataForTable[indexPath.row];
     
     DTMAddingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DTM_ADDING_CELL_IDENTIFIER forIndexPath:indexPath];
     

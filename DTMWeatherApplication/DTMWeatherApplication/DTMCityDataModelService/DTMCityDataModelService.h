@@ -15,6 +15,7 @@
 
 + (DTMCityDataModelService *_Nonnull)sharedService;
 
+- (void)updateDataForTableForSearchText:(NSString *_Nonnull) searchText;
 
 
 @end

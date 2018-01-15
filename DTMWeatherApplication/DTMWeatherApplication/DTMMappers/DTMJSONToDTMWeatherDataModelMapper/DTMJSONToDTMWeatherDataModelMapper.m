@@ -20,7 +20,7 @@
 
 @implementation DTMJSONToDTMWeatherDataModelMapper
 
-+ (void)saveInCoreDataDTMWeatherDataModelFromJSON:(NSData *)json completion:(DTMMapperCompletionBlock)completion
++ (void)saveInCoreDataDTMWeatherDataModelFromJSON:(NSData *)json completionHandler:(DTMMapperCompletionBlock)completion
 {
     
     DTMCoreDataController *coreDataController = [DTMCoreDataController sharedController];
@@ -31,11 +31,6 @@
     
     NSDictionary *tmpDictionary = [NSJSONSerialization JSONObjectWithData:json options:kNilOptions error:&error];
     
-    if (error)
-    {
-        NSLog(@"3RROЯ WITH SERIALIZATIOИ!!!");
-        exit(0);
-    }
     
     DTMWeatherDataModel *dataModel = [NSEntityDescription insertNewObjectForEntityForName:@"DTMWeatherDataModel" inManagedObjectContext:coreDataContext];
     

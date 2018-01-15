@@ -28,7 +28,7 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cityName = self.dataForTable[self.dataForTable.count - indexPath.section - 1].city_name;
+    NSString *cityName = self.dataForTable[self.dataForTable.count - indexPath.row - 1].city_name;
     CGFloat height = [DTMMainTableViewCell heightForCellForCityName: cityName];
     return height;
 }
@@ -62,16 +62,16 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.dataForTable.count;
+    return 1;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.dataForTable.count;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     //for inversion order of cells
-    DTMWeatherDataModel *data = self.dataForTable[self.dataForTable.count - indexPath.section - 1];
+    DTMWeatherDataModel *data = self.dataForTable[self.dataForTable.count - indexPath.row - 1];
     
     DTMMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DTM_CUSTOM_CELL_REUSE_IDENTIFIER forIndexPath:indexPath];
 

@@ -11,7 +11,6 @@
 #import "DTMMainViewController.h"
 #import "DTMCoreDataController.h"
 
-#import "DTMAddingViewController.h" //  *for test*
 
 @interface AppDelegate ()
 
@@ -32,10 +31,6 @@
    
     self.window = [[UIWindow alloc] init];
     self.window.rootViewController = self.navigationController;
-//  *for test*
-//    self.window.rootViewController = [DTMAddingViewController new];
-//  *end test*
-    
     [self.window makeKeyAndVisible];
     
     return YES;

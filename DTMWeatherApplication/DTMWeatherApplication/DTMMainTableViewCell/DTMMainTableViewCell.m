@@ -35,7 +35,7 @@ static CGFloat DTMCellAlphaValue = 0.5;
     
     _cityLabel = [[UILabel alloc] init];
     _cityLabel.numberOfLines = 0;
-    _cityLabel.font = [UIFont fontWithName: DTMCityLabelFontName size:21.0];
+    _cityLabel.font = [UIFont fontWithName: DTMCityLabelFontName size:27.0];
     [self.contentView addSubview:_cityLabel];
     
     _dateLabel = [[UILabel alloc] init];
@@ -47,8 +47,8 @@ static CGFloat DTMCellAlphaValue = 0.5;
     _detailButton.imageView.layer.cornerRadius = DTMDetailButtonSize.height/2;
     [self.contentView addSubview:_detailButton];
     
-    [self.contentView setBackgroundColor:UIColor.clearColor];
-    [self setBackgroundColor:UIColor.clearColor];
+    self.contentView.backgroundColor = UIColor.clearColor;
+    self.backgroundColor = UIColor.clearColor;
     
     self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell.jpg"]];
     self.backgroundView.alpha = DTMCellAlphaValue;
@@ -90,9 +90,9 @@ static CGFloat DTMCellAlphaValue = 0.5;
     
     [testCell layoutSubviews];
     
-    CGFloat height = testCell.cityLabel.frame.size.height + testCell.dateLabel.frame.size.height + 3 * DTMElementsOffset;
+    CGFloat height = testCell.cityLabel.frame.size.height + testCell.dateLabel.frame.size.height + 5 * DTMElementsOffset;
     
-    if (CGRectGetMaxY(testCell.imageView.frame) > height) return CGRectGetMaxY(testCell.imageView.frame);
+    if (CGRectGetMaxY(testCell.imageView.frame) > height) return CGRectGetMaxY(testCell.imageView.frame) + 2 * DTMElementsOffset;
     
     return height;
 }

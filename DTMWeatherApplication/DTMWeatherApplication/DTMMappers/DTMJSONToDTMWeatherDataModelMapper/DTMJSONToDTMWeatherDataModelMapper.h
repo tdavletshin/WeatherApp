@@ -12,6 +12,6 @@ typedef void (^DTMMapperCompletionBlock)(NSError *error);
 
 @interface DTMJSONToDTMWeatherDataModelMapper : NSObject
 
-+ (void)saveInCoreDataDTMWeatherDataModelFromJSON:(NSData *)json completion:(DTMMapperCompletionBlock)completion;
++ (void)saveInCoreDataDTMWeatherDataModelFromJSON:(NSData *)json completionHandler:(DTMMapperCompletionBlock)completion;
 
 @end

@@ -13,6 +13,7 @@
 #import <Masonry/Masonry.h>
 #import <Foundation/Foundation.h>
 #import "DTMMainTableViewCell.h"
+#import "DTMCityDataModelService.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
@@ -25,8 +26,6 @@ NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER = @"DTM.Custom.Weather.Cell";
 
 @property (nonatomic, strong) UITableView *mainTableView;
 @property (nonatomic, strong) id<UITableViewDelegate, DTMExtendedUITableViewDataSource> mainTableViewDelegateAndDataSource;
-//@property (nonatomic, strong, nullable) UIImage *backgroundImage;
-
 @end
 
 @implementation DTMMainViewController
@@ -104,31 +103,29 @@ NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER = @"DTM.Custom.Weather.Cell";
 
 - (void)transiteToAddingViewController
 {
-    [self.navigationController pushViewController:[DTMAddingViewController new] animated:YES];
+    [self.navigationController pushViewController:[[DTMAddingViewController alloc] init] animated:YES];
 }
 
 #pragma mark - Delete Upper Cell
 
 - (void)deleteUpperCell
 {
-    if (![self.mainTableView numberOfSections]) return;
+    if (![self.mainTableView numberOfRowsInSection:0]) return;
     
     NSIndexPath *deleteIndexPath = [self.mainTableView indexPathForSelectedRow];
     
     if (deleteIndexPath == nil)
     {
         [self.mainTableViewDelegateAndDataSource removeElementFromDataModelForIndex:0];
-        NSIndexSet *deleteIndexSet = [NSIndexSet indexSetWithIndex:0];
-        [self.mainTableView deleteSections:deleteIndexSet withRowAnimation:UITableViewRowAnimationNone];
+        deleteIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.mainTableView deleteRowsAtIndexPaths:@[deleteIndexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
     
     else
     {
-        NSUInteger deleteIndex = deleteIndexPath.section;
-        
+        NSUInteger deleteIndex = deleteIndexPath.row;
         [self.mainTableViewDelegateAndDataSource removeElementFromDataModelForIndex:deleteIndex];
-        NSIndexSet *deleteIndexSet = [NSIndexSet indexSetWithIndex:deleteIndex];
-        [self.mainTableView deleteSections:deleteIndexSet withRowAnimation:UITableViewRowAnimationNone];
+        [self.mainTableView deleteRowsAtIndexPaths:@[deleteIndexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 

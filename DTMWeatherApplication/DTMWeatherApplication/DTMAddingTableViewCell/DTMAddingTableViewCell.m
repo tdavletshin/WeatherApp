@@ -22,28 +22,33 @@ static CGFloat DTMAddingCellAlphaValue = 0.5;
     
     _countryLabel = [[UILabel alloc] init];
     _countryLabel.numberOfLines = 0;
-    _countryLabel.font = [UIFont fontWithName: DTMCityLabelFontName size:18.0];
+    _countryLabel.font = [UIFont fontWithName: DTMCityLabelFontName size:20.0];
     _cityLabel.textColor = UIColor.blackColor;
     [self.contentView addSubview:_countryLabel];
     
     _cityLabel = [[UILabel alloc] init];
     _cityLabel.numberOfLines = 0;
-    _cityLabel.font = [UIFont fontWithName: DTMCityLabelFontName size:21.0];
+    _cityLabel.font = [UIFont fontWithName: DTMCityLabelFontName size:32.0];
     _cityLabel.textColor = UIColor.blackColor;
     [self.contentView addSubview:_cityLabel];
     
-    [self.contentView setBackgroundColor:UIColor.clearColor];
-    [self setBackgroundColor:UIColor.clearColor];
+    self.contentView.backgroundColor = UIColor.clearColor;
+    self.backgroundColor = UIColor.clearColor;
     
     self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gradient.png"]];
     self.backgroundView.contentMode = UIViewContentModeScaleToFill;
     self.backgroundView.alpha = DTMAddingCellAlphaValue;
+    
+    self.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gradient.png"]];
+    self.selectedBackgroundView.contentMode = UIViewContentModeScaleToFill;
 
     return self;
 }
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
+    
     CGSize cityLabelSize = [self.cityLabel sizeThatFits:CGSizeMake(CGRectGetMaxX(self.contentView.frame) - 2*DTMElementsOffset, CGFLOAT_MAX)];
     
     self.cityLabel.frame = CGRectMake(DTMElementsOffset, DTMElementsOffset, cityLabelSize.width, cityLabelSize.height);
@@ -53,12 +58,8 @@ static CGFloat DTMAddingCellAlphaValue = 0.5;
     self.countryLabel.frame = CGRectMake(DTMElementsOffset, 2 * DTMElementsOffset + cityLabelSize.height, countryLabelSize.width, countryLabelSize.height);
     
     self.backgroundView.frame = CGRectMake(0, 0, CGRectGetMaxX(self.contentView.frame), CGRectGetMaxY(self.countryLabel.frame) + DTMElementsOffset);
-}
-
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
+    
+    self.selectedBackgroundView.frame = CGRectMake(0, 0, CGRectGetMaxX(self.contentView.frame), CGRectGetMaxY(self.countryLabel.frame) + DTMElementsOffset);
 }
 
 + (CGFloat)heightForCellForCityName: (NSString *_Nonnull)cityName andCountryName: (NSString *_Nonnull)countryName
@@ -70,7 +71,7 @@ static CGFloat DTMAddingCellAlphaValue = 0.5;
     
     [testCell layoutSubviews];
     
-    return DTMElementsOffset + CGRectGetMaxY(testCell.countryLabel.frame);
+    return DTMElementsOffset * 4 + CGRectGetMaxY(testCell.countryLabel.frame);
 }
 
 

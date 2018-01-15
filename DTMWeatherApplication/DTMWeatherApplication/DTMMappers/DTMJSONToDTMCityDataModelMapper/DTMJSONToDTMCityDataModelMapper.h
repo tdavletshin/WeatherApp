@@ -12,6 +12,6 @@ typedef void (^DTMMapperCompletionBlock)(NSError *error);
 
 @interface DTMJSONToDTMCityDataModelMapper : NSObject
 
-+ (NSArray *)arrayOfDTMCityDataModelFromJSON:(NSData *)jsonData completion:(DTMMapperCompletionBlock)completion;
++ (NSArray *)arrayOfDTMCityDataModelFromJSON:(NSData *)jsonData completionHandler:(DTMMapperCompletionBlock)completion;
 
 @end
