@@ -15,4 +15,6 @@
 
 + (CGFloat)heightForCellForCityName: (NSString *_Nonnull)cityName andCountryName: (NSString *_Nonnull)countryName;
 
+- (CGFloat)heightForCellWithCityName: (NSString *_Nonnull)cityName andCountryName: (NSString *_Nonnull)countryName;
+
 @end

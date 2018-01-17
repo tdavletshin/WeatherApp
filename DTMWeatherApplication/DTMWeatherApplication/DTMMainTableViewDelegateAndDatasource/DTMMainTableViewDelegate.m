@@ -20,7 +20,6 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
 @interface DTMMainTableViewDelegate ()
 
 @property (nonatomic, strong) NSManagedObjectContext *coreDataContext;
-@property (nonatomic, strong) NSFetchRequest *fetchRequest;
 
 @end
 
@@ -28,9 +27,15 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cityName = self.dataForTable[self.dataForTable.count - indexPath.row - 1].city_name;
-    CGFloat height = [DTMMainTableViewCell heightForCellForCityName: cityName];
-    return height;
+    DTMWeatherDataModel *data = self.dataForTable[self.dataForTable.count - indexPath.row - 1];
+    NSString *cityName = data.city_name;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/yyyy  HH:mm"];
+    NSString *date = [formatter stringFromDate:data.date];
+    
+    DTMMainTableViewCell *cell = [[DTMMainTableViewCell alloc] init];
+    
+    return [cell heightForCellWithCityName:cityName andDate:date];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

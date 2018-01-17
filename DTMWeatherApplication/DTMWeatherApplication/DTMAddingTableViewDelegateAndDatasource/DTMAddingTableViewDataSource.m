@@ -32,9 +32,9 @@ NSString *const DTM_ADDING_CELL_IDENTIFIER = @"DTM.ADDING_CELL.IDENTIFIER";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DTMCityDataModel *cityModel = [DTMCityDataModelService sharedService].dataForTable[indexPath.row];
-    
+
     DTMAddingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DTM_ADDING_CELL_IDENTIFIER forIndexPath:indexPath];
-    
+
     cell.cityLabel.text = cityModel.cityName;
     cell.countryLabel.text = cityModel.countryName;
     

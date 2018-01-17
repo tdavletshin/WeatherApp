@@ -30,7 +30,7 @@
     }
     
     NSArray *resultData = [preResultData copy];
-    completion(error);
+    if (completion) completion(error);
     return resultData;
 }
 

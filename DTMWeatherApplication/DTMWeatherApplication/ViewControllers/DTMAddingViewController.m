@@ -16,6 +16,7 @@
 #import "DTMAddingTableViewDataSource.h"
 #import "DTMAddingTableViewCell.h"
 #import "DTMAddingSearchBarDelegate.h"
+#import "DTMCityDataModelService.h"
 
 
 extern NSString *const DTM_ADDING_CELL_IDENTIFIER;
@@ -40,23 +41,24 @@ extern NSString *const DTM_ADDING_CELL_IDENTIFIER;
     [self setUpNavigationBar];
     [self setUpSearchBar];
     [self setUpTableView];
+    [self addConstraints];
+    
+    if ([DTMCityDataModelService sharedService].dataForTable.count == 0)
+        [self transiteToAlertControllerWithError:nil andDescription:@"Something goes wrong. Please restart app and try again."];
+    
+    
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
-- (void)viewDidLayoutSubviews
+- (void)addConstraints
 {
     [ self.searchBar mas_makeConstraints:^(MASConstraintMaker *make)
-     {
-         make.top.equalTo(self.navigationController.navigationBar.mas_bottom);
-         make.bottom.equalTo(self.addingCitiesTableView.mas_top);
-         make.right.equalTo(self.view.mas_right);
-         make.left.equalTo(self.view.mas_left);
-     }
-    ];
+         {
+             make.top.equalTo(self.view.mas_top).with.offset(CGRectGetMaxY(self.navigationController.navigationBar.frame));
+             make.bottom.equalTo(self.addingCitiesTableView.mas_top);
+             make.right.equalTo(self.view.mas_right);
+             make.left.equalTo(self.view.mas_left);
+         }
+     ];
     
     [ self.addingCitiesTableView mas_makeConstraints:^(MASConstraintMaker *make)
          {
@@ -67,6 +69,12 @@ extern NSString *const DTM_ADDING_CELL_IDENTIFIER;
          }
      ];
 }
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
 
 #pragma mark - set up navigation bar
 

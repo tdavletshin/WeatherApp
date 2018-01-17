@@ -12,6 +12,6 @@ typedef void (^CompletionBlock)(NSError * _Nullable error, NSData * _Nullable da
 
 @interface DTMNetworkService : NSObject
 
-- (void)GetDataWithCityId: (int64_t)cityId completionHandler:(CompletionBlock _Nonnull )completionBlock;
++ (void)getDataWithCityId: (int64_t)cityId completionHandler:(CompletionBlock _Nonnull )completionBlock;
 
 @end

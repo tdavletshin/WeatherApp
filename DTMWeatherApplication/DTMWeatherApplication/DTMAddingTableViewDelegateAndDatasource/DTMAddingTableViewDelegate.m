@@ -13,6 +13,7 @@
 #import "DTMJSONToDTMWeatherDataModelMapper.h"
 #import "DTMNetworkService.h"
 
+extern NSString *const DTM_ADDING_CELL_IDENTIFIER;
 static const CGFloat DTMCellInterval = 44.0;
 
 @implementation DTMAddingTableViewDelegate
@@ -30,12 +31,12 @@ static const CGFloat DTMCellInterval = 44.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{    
     DTMCityDataModel *cityModel = [DTMCityDataModelService sharedService].dataForTable[indexPath.row];
     
-    CGFloat height = [DTMAddingTableViewCell heightForCellForCityName:cityModel.cityName andCountryName:cityModel.countryName];
+    DTMAddingTableViewCell *cell = [[DTMAddingTableViewCell alloc] init];
     
-    return height;
+    return [cell heightForCellWithCityName:cityModel.cityName andCountryName:cityModel.countryName];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -44,8 +45,7 @@ static const CGFloat DTMCellInterval = 44.0;
     
     int64_t cityId = currentCellDataModel.cityId;
 
-    DTMNetworkService *networkService = [[DTMNetworkService alloc] init];
-    [networkService GetDataWithCityId:cityId completionHandler:^(NSError * _Nullable error, NSData * _Nullable data)
+    [DTMNetworkService getDataWithCityId:cityId completionHandler:^(NSError * _Nullable error, NSData * _Nullable data)
     {
         if (error)
         {

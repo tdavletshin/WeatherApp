@@ -9,16 +9,15 @@
 
 #import "DTMWeatherDataModel+CoreDataClass.h"
 
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DTMWeatherDataModel (CoreDataProperties)
 
 @property (nonatomic) int64_t city_id;
-@property (nullable, nonatomic, copy) NSString *city_name;
-@property (nullable, nonatomic, copy) NSDate *date;
+@property (nonatomic, copy, nullable) NSString *city_name;
+@property (nonatomic, copy, nullable) NSDate *date;
 @property (nonatomic) double humidity;
-@property (nullable, nonatomic, copy) NSString *icon_id;
+@property (nonatomic, copy, nullable) NSString *icon_id;
 @property (nonatomic) double pressure;
 @property (nonatomic) double temperature;
 @property (nonatomic) double wind_direction;

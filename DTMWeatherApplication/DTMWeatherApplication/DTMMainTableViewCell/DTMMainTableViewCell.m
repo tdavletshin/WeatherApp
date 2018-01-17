@@ -18,6 +18,8 @@ static NSString *const DTMTemperatureLabelFontName = @"Georgia-BoldItalic";
 static NSString *const DTMCityLabelFontName = @"Courier-Bold";
 static NSString *const DTMDateLabelFontName = @"Georgia-BoldItalic";
 static CGFloat DTMCellAlphaValue = 0.5;
+static CGFloat DTMCityLabelFontSize = 27.0;
+static CGFloat DTMDateLabelFontSize = 14.0;
 
 @implementation DTMMainTableViewCell
 
@@ -35,11 +37,11 @@ static CGFloat DTMCellAlphaValue = 0.5;
     
     _cityLabel = [[UILabel alloc] init];
     _cityLabel.numberOfLines = 0;
-    _cityLabel.font = [UIFont fontWithName: DTMCityLabelFontName size:27.0];
+    _cityLabel.font = [UIFont fontWithName: DTMCityLabelFontName size:DTMCityLabelFontSize];
     [self.contentView addSubview:_cityLabel];
     
     _dateLabel = [[UILabel alloc] init];
-    _dateLabel.font = [UIFont fontWithName: DTMDateLabelFontName size:14.0];
+    _dateLabel.font = [UIFont fontWithName: DTMDateLabelFontName size:DTMDateLabelFontSize];
     [self.contentView addSubview:_dateLabel];
     
     _detailButton = [[UIButton alloc] init];
@@ -95,6 +97,27 @@ static CGFloat DTMCellAlphaValue = 0.5;
     if (CGRectGetMaxY(testCell.imageView.frame) > height) return CGRectGetMaxY(testCell.imageView.frame) + 2 * DTMElementsOffset;
     
     return height;
+}
+
+
+- (CGFloat)heightForCellWithCityName: (NSString *_Nonnull)cityName andDate: (NSString *_Nonnull)Date
+{
+    CGSize sizeConstraints = CGSizeMake(CGRectGetMaxX(self.contentView.frame) - 5 * DTMElementsOffset - 2.5 * DTMWeatherImageViewSize.width - DTMDetailButtonSize.width, CGFLOAT_MAX);
+    UIFont *cityLabelFont = [UIFont fontWithName:DTMCityLabelFontName size:DTMCityLabelFontSize];
+    UIFont *dateLabelFont = [UIFont fontWithName:DTMDateLabelFontName size:DTMDateLabelFontSize];
+    
+    NSAttributedString *attributedTextOfCityLabel = [[NSAttributedString alloc] initWithString:cityName attributes:@{NSFontAttributeName: cityLabelFont}];
+    NSAttributedString *attributedTextOfDateLabel = [[NSAttributedString alloc] initWithString:cityName attributes:@{NSFontAttributeName: dateLabelFont}];
+    
+    CGRect rectForCityLabel = [attributedTextOfCityLabel boundingRectWithSize:sizeConstraints options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    CGRect rectForDateLabel = [attributedTextOfDateLabel boundingRectWithSize:sizeConstraints options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    
+    CGFloat heighOfCityLabel = rectForCityLabel.size.height;
+    CGFloat heighOfDateLabel = rectForDateLabel.size.height;
+    
+    CGFloat resultHeight = heighOfCityLabel + heighOfDateLabel + 3 * DTMElementsOffset;
+    
+    return resultHeight > DTMWeatherImageViewSize.height ? resultHeight : DTMWeatherImageViewSize.height;
 }
 
 @end

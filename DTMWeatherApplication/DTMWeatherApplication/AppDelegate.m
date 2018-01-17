@@ -10,6 +10,7 @@
 #import "DTMNavigationControllerDelegate.h"
 #import "DTMMainViewController.h"
 #import "DTMCoreDataController.h"
+#import "DTMCityDataModelService.h"
 
 
 @interface AppDelegate ()
@@ -22,7 +23,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+    [DTMCityDataModelService sharedService];
     DTMMainViewController *firstViewController = [[DTMMainViewController alloc] init];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
     self.navigationControllerDelegate = [[DTMNavigationControllerDelegate alloc] init];

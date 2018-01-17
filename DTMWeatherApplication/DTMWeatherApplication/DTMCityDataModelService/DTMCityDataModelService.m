@@ -36,18 +36,17 @@ static DTMCityDataModelService *sharedInstance = nil;
     
     if (!self) return nil;
     
-    NSString *nameOfFileWithData = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], @"city.list.json"];
-
-    NSData *jsonData = [NSData dataWithContentsOfFile: nameOfFileWithData];
-
-    NSArray *preGeneralData = [DTMJSONToDTMCityDataModelMapper arrayOfDTMCityDataModelFromJSON:jsonData completionHandler:^(NSError *error)
-    {
-
-        // to do: catch an error!
-    }];
-
-    _generalData = [[NSArray alloc] initWithArray:preGeneralData copyItems:YES];
-    _dataForTable = [[NSArray alloc] initWithArray:preGeneralData copyItems:YES];
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+    ^{
+        NSString *nameOfFileWithData = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], @"city.list.json"];
+        
+        NSData *jsonData = [NSData dataWithContentsOfFile: nameOfFileWithData];
+        
+        NSArray *preGeneralData = [DTMJSONToDTMCityDataModelMapper arrayOfDTMCityDataModelFromJSON:jsonData completionHandler:^(NSError *error) {}];
+        
+        _generalData = preGeneralData;
+        _dataForTable = [[NSArray alloc] initWithArray:preGeneralData copyItems:YES];
+    });
     
     return self;
 }

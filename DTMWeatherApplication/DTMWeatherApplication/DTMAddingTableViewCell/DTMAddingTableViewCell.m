@@ -10,8 +10,11 @@
 #import <Masonry/Masonry.h>
 
 static NSString *const DTMCityLabelFontName = @"Courier-Bold";
+static NSString *const DTMCountryLabelFontName = @"Courier-Bold";
 static const CGFloat DTMElementsOffset = 10.0;
 static CGFloat DTMAddingCellAlphaValue = 0.5;
+static CGFloat DTMCountryLabelFontSize = 20.0;
+static CGFloat DTMCityLabelFontSize = 32.0;
 
 @implementation DTMAddingTableViewCell
 
@@ -22,13 +25,13 @@ static CGFloat DTMAddingCellAlphaValue = 0.5;
     
     _countryLabel = [[UILabel alloc] init];
     _countryLabel.numberOfLines = 0;
-    _countryLabel.font = [UIFont fontWithName: DTMCityLabelFontName size:20.0];
+    _countryLabel.font = [UIFont fontWithName: DTMCountryLabelFontName size:DTMCountryLabelFontSize];
     _cityLabel.textColor = UIColor.blackColor;
     [self.contentView addSubview:_countryLabel];
     
     _cityLabel = [[UILabel alloc] init];
     _cityLabel.numberOfLines = 0;
-    _cityLabel.font = [UIFont fontWithName: DTMCityLabelFontName size:32.0];
+    _cityLabel.font = [UIFont fontWithName: DTMCityLabelFontName size:DTMCityLabelFontSize];
     _cityLabel.textColor = UIColor.blackColor;
     [self.contentView addSubview:_cityLabel];
     
@@ -72,6 +75,26 @@ static CGFloat DTMAddingCellAlphaValue = 0.5;
     [testCell layoutSubviews];
     
     return DTMElementsOffset * 4 + CGRectGetMaxY(testCell.countryLabel.frame);
+}
+
+- (CGFloat)heightForCellWithCityName: (NSString *_Nonnull)cityName andCountryName: (NSString *_Nonnull)countryName
+{
+    CGSize sizeConstraints = CGSizeMake(CGRectGetMaxX(self.contentView.frame) - 2*DTMElementsOffset, CGFLOAT_MAX);
+    UIFont *cityLabelFont = [UIFont fontWithName:DTMCityLabelFontName size:DTMCityLabelFontSize];
+    UIFont *countryLabelFont = [UIFont fontWithName:DTMCountryLabelFontName size:DTMCountryLabelFontSize];
+    
+    NSAttributedString *attributedTextOfCityLabel = [[NSAttributedString alloc] initWithString:cityName attributes:@{NSFontAttributeName: cityLabelFont}];
+    NSAttributedString *attributedTextOfCountryLabel = [[NSAttributedString alloc] initWithString:cityName attributes:@{NSFontAttributeName: countryLabelFont}];
+    
+    CGRect rectForCityLabel = [attributedTextOfCityLabel boundingRectWithSize:sizeConstraints options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    CGRect rectForCountryLabel = [attributedTextOfCountryLabel boundingRectWithSize:sizeConstraints options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    
+    CGFloat heighOfCityLabel = rectForCityLabel.size.height;
+    CGFloat heighOfCountryLabel = rectForCountryLabel.size.height;
+    
+    CGFloat resultHeight = heighOfCityLabel + heighOfCountryLabel + 3 * DTMElementsOffset;
+    
+    return resultHeight + 2*DTMElementsOffset;
 }
 
 
