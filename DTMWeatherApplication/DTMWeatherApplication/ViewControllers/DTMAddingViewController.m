@@ -93,11 +93,8 @@ extern NSString *const DTM_ADDING_CELL_IDENTIFIER;
 - (void)setUpTableView
 {
     self.addingCitiesTableView = [[UITableView alloc] init];
-    void (^transiteBlock)(void) = ^{ [self transiteToMainViewController]; };
-    TransiteToAlertControllerBlock block = ^(NSError *error, NSString *description){ [self transiteToAlertControllerWithError:error andDescription:description]; };
     DTMAddingTableViewDelegate *addingTableViewDelegate = [[DTMAddingTableViewDelegate alloc] init];
-    addingTableViewDelegate.transiteToMainViewControllerBlock = transiteBlock;
-    addingTableViewDelegate.transiteToAlertControllerBlock = block;
+    addingTableViewDelegate.viewController = self;
     self.addingCitiesTableViewDelegate = addingTableViewDelegate;
     self.addingCitiesTableView.delegate = self.addingCitiesTableViewDelegate;
     self.addingCitiesTableViewDataSource = [[DTMAddingTableViewDataSource alloc] init];
@@ -114,9 +111,8 @@ extern NSString *const DTM_ADDING_CELL_IDENTIFIER;
 - (void)setUpSearchBar
 {
     self.searchBar = [[UISearchBar alloc] init];
-    void (^reloadDataBlock)(void) = ^{ [self.addingCitiesTableView reloadData]; };
     DTMAddingSearchBarDelegate *searchBarDelegate = [[DTMAddingSearchBarDelegate alloc] init];
-    searchBarDelegate.tableReloadDataBlock = reloadDataBlock;
+    searchBarDelegate.viewController = self;
     self.searchBarDelegate = searchBarDelegate;
     self.searchBar.delegate = self.searchBarDelegate;
     [self.view addSubview:self.searchBar];
@@ -141,6 +137,11 @@ extern NSString *const DTM_ADDING_CELL_IDENTIFIER;
     }];
     [alert addAction:ok];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)reloadDataInAddingCitiesTableView
+{
+    [self.addingCitiesTableView reloadData];
 }
 
 @end

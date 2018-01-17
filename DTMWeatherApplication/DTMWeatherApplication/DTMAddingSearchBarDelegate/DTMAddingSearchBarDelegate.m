@@ -21,7 +21,9 @@
     
     // reload data in table
     
-    self.tableReloadDataBlock();
+    //self.tableReloadDataBlock();
+    if (self.viewController)
+        [self.viewController reloadDataInAddingCitiesTableView];
 }
 
 @end

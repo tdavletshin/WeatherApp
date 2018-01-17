@@ -10,4 +10,7 @@
 
 @interface DTMAddingViewController : UIViewController
 
+- (void)transiteToMainViewController;
+- (void)transiteToAlertControllerWithError: (NSError *)error andDescription: (NSString *)description;
+- (void)reloadDataInAddingCitiesTableView;
 @end

@@ -55,7 +55,8 @@ static const CGFloat DTMCellInterval = 44.0;
             __block NSString *networkErrorDescription = @"Something goes wrong with network. Please check your connection and try again.";
             dispatch_sync(dispatch_get_main_queue(),
             ^{
-                self.transiteToAlertControllerBlock(networkError, networkErrorDescription);
+                if (self.viewController)
+                    [self.viewController transiteToAlertControllerWithError:networkError andDescription:networkErrorDescription];
             });
         }
         
@@ -70,7 +71,8 @@ static const CGFloat DTMCellInterval = 44.0;
                     __block NSString *networkErrorDescription = @"Something goes wrong. Please restart app and try again.";
                     dispatch_sync(dispatch_get_main_queue(),
                     ^{
-                        self.transiteToAlertControllerBlock(networkError, networkErrorDescription);
+                        if (self.viewController)
+                            [self.viewController transiteToAlertControllerWithError:networkError andDescription:networkErrorDescription];
                     });
                 }
                 
@@ -78,7 +80,8 @@ static const CGFloat DTMCellInterval = 44.0;
                 {
                     dispatch_sync(dispatch_get_main_queue(),
                     ^{
-                        self.transiteToMainViewControllerBlock();
+                        if (self.viewController)
+                            [self.viewController transiteToMainViewController];
                     });
                 }
             }];
@@ -98,6 +101,5 @@ static const CGFloat DTMCellInterval = 44.0;
         completion:^(BOOL finished) {}
      ];
 }
-
 
 @end
