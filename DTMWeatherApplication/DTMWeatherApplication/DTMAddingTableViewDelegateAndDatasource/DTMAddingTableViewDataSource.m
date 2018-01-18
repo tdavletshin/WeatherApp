@@ -6,17 +6,19 @@
 //  Copyright © 2018 Davletshin Timur. All rights reserved.
 //
 
+
 #import "DTMAddingTableViewDataSource.h"
 #import "DTMAddingTableViewCell.h"
 #import "DTMCityDataModelService.h"
 
-NSString *const DTM_ADDING_CELL_IDENTIFIER = @"DTM.ADDING_CELL.IDENTIFIER";
 
-@interface DTMAddingTableViewDataSource ()
+NSString *const DTMCustomAddingTableReuseIdentifier = @"DTM.ADDING_CELL.IDENTIFIER";
 
-@end
 
 @implementation DTMAddingTableViewDataSource
+
+
+#pragma mark - TableView dataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -28,20 +30,14 @@ NSString *const DTM_ADDING_CELL_IDENTIFIER = @"DTM.ADDING_CELL.IDENTIFIER";
     return [DTMCityDataModelService sharedService].dataForTable.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DTMCityDataModel *cityModel = [DTMCityDataModelService sharedService].dataForTable[indexPath.row];
-
-    DTMAddingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DTM_ADDING_CELL_IDENTIFIER forIndexPath:indexPath];
-
+    DTMAddingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DTMCustomAddingTableReuseIdentifier forIndexPath:indexPath];
     cell.cityLabel.text = cityModel.cityName;
     cell.countryLabel.text = cityModel.countryName;
-    
     return cell;
 }
-
-
 
 
 @end

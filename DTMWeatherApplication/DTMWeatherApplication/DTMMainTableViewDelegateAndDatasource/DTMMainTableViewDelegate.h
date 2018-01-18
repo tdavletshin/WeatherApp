@@ -6,17 +6,21 @@
 //  Copyright © 2017 Davletshin Timur. All rights reserved.
 //
 
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "DTMExtendedUITableViewDataSourceProtocol.h"
 #import "DTMWeatherDataModel+CoreDataProperties.h"
 #import "DTMWeatherDataModel+CoreDataClass.h"
 
+
 @interface DTMMainTableViewDelegate : NSObject <UITableViewDelegate, DTMExtendedUITableViewDataSource>
+
 
 @property (nonatomic, copy, nonnull) NSArray<DTMWeatherDataModel *> *dataForTable;
 
 - (void)updateDataForMainTableView;
 - (void)removeElementFromDataModelForIndex:(NSUInteger) index;
+
 
 @end

@@ -6,6 +6,7 @@
 //  Copyright © 2018 Davletshin Timur. All rights reserved.
 //
 
+
 #import "DTMMainTableViewCell.h"
 #import <Masonry/Masonry.h>
 
@@ -21,7 +22,11 @@ static CGFloat DTMCellAlphaValue = 0.5;
 static CGFloat DTMCityLabelFontSize = 27.0;
 static CGFloat DTMDateLabelFontSize = 14.0;
 
+
 @implementation DTMMainTableViewCell
+
+
+#pragma mark - Lifecycle
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -60,7 +65,6 @@ static CGFloat DTMDateLabelFontSize = 14.0;
     return self;
 }
 
-
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -83,24 +87,9 @@ static CGFloat DTMDateLabelFontSize = 14.0;
 }
 
 
-+ (CGFloat)heightForCellForCityName: (NSString *_Nonnull)cityName
-{
-    DTMMainTableViewCell *testCell = [[DTMMainTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"IDENTIFY"];
-    
-    testCell.cityLabel.text = cityName;
-    testCell.dateLabel.text = DTMTestDate;
-    
-    [testCell layoutSubviews];
-    
-    CGFloat height = testCell.cityLabel.frame.size.height + testCell.dateLabel.frame.size.height + 5 * DTMElementsOffset;
-    
-    if (CGRectGetMaxY(testCell.imageView.frame) > height) return CGRectGetMaxY(testCell.imageView.frame) + 2 * DTMElementsOffset;
-    
-    return height;
-}
+#pragma mark - Calculating of cell height
 
-
-- (CGFloat)heightForCellWithCityName: (NSString *_Nonnull)cityName andDate: (NSString *_Nonnull)Date
+- (CGFloat)heightForCellWithCityName: (NSString *_Nonnull)cityName withDate: (NSString *_Nonnull)Date
 {
     CGSize sizeConstraints = CGSizeMake(CGRectGetMaxX(self.contentView.frame) - 5 * DTMElementsOffset - 2.5 * DTMWeatherImageViewSize.width - DTMDetailButtonSize.width, CGFLOAT_MAX);
     UIFont *cityLabelFont = [UIFont fontWithName:DTMCityLabelFontName size:DTMCityLabelFontSize];
@@ -117,7 +106,8 @@ static CGFloat DTMDateLabelFontSize = 14.0;
     
     CGFloat resultHeight = heighOfCityLabel + heighOfDateLabel + 3 * DTMElementsOffset;
     
-    return resultHeight > DTMWeatherImageViewSize.height ? resultHeight : DTMWeatherImageViewSize.height;
+    return (resultHeight > DTMWeatherImageViewSize.height) ? resultHeight : DTMWeatherImageViewSize.height;
 }
+
 
 @end

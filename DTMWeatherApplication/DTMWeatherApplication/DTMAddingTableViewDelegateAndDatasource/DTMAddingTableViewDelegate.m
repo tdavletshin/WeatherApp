@@ -6,6 +6,7 @@
 //  Copyright © 2018 Davletshin Timur. All rights reserved.
 //
 
+
 #import "DTMAddingTableViewDelegate.h"
 #import "DTMAddingTableViewCell.h"
 #import "DTMCityDataModelService.h"
@@ -13,10 +14,14 @@
 #import "DTMJSONToDTMWeatherDataModelMapper.h"
 #import "DTMNetworkService.h"
 
-extern NSString *const DTM_ADDING_CELL_IDENTIFIER;
+
 static const CGFloat DTMCellInterval = 44.0;
 
+
 @implementation DTMAddingTableViewDelegate
+
+
+#pragma mark - TableView delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -33,60 +38,62 @@ static const CGFloat DTMCellInterval = 44.0;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
     DTMCityDataModel *cityModel = [DTMCityDataModelService sharedService].dataForTable[indexPath.row];
-    
     DTMAddingTableViewCell *cell = [[DTMAddingTableViewCell alloc] init];
-    
-    return [cell heightForCellWithCityName:cityModel.cityName andCountryName:cityModel.countryName];
+    return [cell heightForCellWithCityName:cityModel.cityName withCountryName:cityModel.countryName];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DTMCityDataModel *currentCellDataModel = [DTMCityDataModelService sharedService].dataForTable[indexPath.row];
-    
     int64_t cityId = currentCellDataModel.cityId;
-
-    [DTMNetworkService getDataWithCityId:cityId completionHandler:^(NSError * _Nullable error, NSData * _Nullable data)
-    {
+    [DTMNetworkService getDataWithCityId:cityId completionHandler:^(NSError * _Nullable error, NSData * _Nullable data){
         if (error)
         {
              NSLog(@"error with download task");
             
             __block NSError *networkError = error;
             __block NSString *networkErrorDescription = @"Something goes wrong with network. Please check your connection and try again.";
-            dispatch_sync(dispatch_get_main_queue(),
-            ^{
+            
+            dispatch_async(dispatch_get_main_queue(),^{
                 if (self.viewController)
-                    [self.viewController transiteToAlertControllerWithError:networkError andDescription:networkErrorDescription];
+                {
+                    [self.viewController transiteToAlertControllerWithError:networkError withDescription:networkErrorDescription];
+                }
             });
         }
         
         else
         {
-            [DTMJSONToDTMWeatherDataModelMapper saveInCoreDataDTMWeatherDataModelFromJSON:data completionHandler: ^(NSError *error)
-            {
-                if (error)
-                {
-                    NSLog(@"error with saving core data context");
-                    __block NSError *networkError = error;
-                    __block NSString *networkErrorDescription = @"Something goes wrong. Please restart app and try again.";
-                    dispatch_sync(dispatch_get_main_queue(),
-                    ^{
-                        if (self.viewController)
-                            [self.viewController transiteToAlertControllerWithError:networkError andDescription:networkErrorDescription];
-                    });
-                }
-                
-                else
-                {
-                    dispatch_sync(dispatch_get_main_queue(),
-                    ^{
-                        if (self.viewController)
-                            [self.viewController transiteToMainViewController];
-                    });
-                }
-            }];
+            [self saveInCoreDataWeatherDataModelFromJSON:data];
         }
-     }];
+    }];
+}
+
+- (void)saveInCoreDataWeatherDataModelFromJSON: (NSData *)json
+{
+    [DTMJSONToDTMWeatherDataModelMapper saveInCoreDataDTMWeatherDataModelFromJSON:json completionHandler: ^(NSError *error){
+        if (error)
+        {
+            NSLog(@"error with saving core data context");
+            __block NSError *networkError = error;
+            __block NSString *networkErrorDescription = @"Something goes wrong. Please restart app and try again.";
+            dispatch_async(dispatch_get_main_queue(),^{
+                if (self.viewController)
+                {
+                    [self.viewController transiteToAlertControllerWithError:networkError withDescription:networkErrorDescription];
+                }
+            });
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(),^{
+                if (self.viewController)
+                {
+                    [self.viewController transiteToMainViewController];
+                }
+            });
+        }
+    }];
 }
 
 
@@ -94,12 +101,10 @@ static const CGFloat DTMCellInterval = 44.0;
 {
     CGRect frame = cell.frame;
     [cell setFrame:CGRectMake(0, tableView.frame.size.height, frame.size.width, frame.size.height)];
-    [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionTransitionCrossDissolve  animations:
-        ^{
-            [cell setFrame:frame];
-        }
-        completion:^(BOOL finished) {}
-     ];
+    [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionTransitionCrossDissolve  animations:^{
+        [cell setFrame:frame];
+    }completion:^(BOOL finished) {}];
 }
+
 
 @end

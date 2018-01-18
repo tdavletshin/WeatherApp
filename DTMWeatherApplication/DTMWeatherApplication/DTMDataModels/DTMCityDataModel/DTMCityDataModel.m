@@ -6,9 +6,14 @@
 //  Copyright © 2018 Davletshin Timur. All rights reserved.
 //
 
+
 #import "DTMCityDataModel.h"
 
+
 @implementation DTMCityDataModel
+
+
+#pragma mark - NSCopying
 
 - (id)copyWithZone:(nullable NSZone *)zone
 {
@@ -16,14 +21,13 @@
     
     if (copy)
     {
-        // Copy NSObject subclasses
         [copy setCityName:[self.cityName copyWithZone:zone]];
         [copy setCountryName:[self.countryName copyWithZone:zone]];
         
-        // Set primitives
         [copy setCityId:self.cityId];
     }
     return copy;
 }
+
 
 @end

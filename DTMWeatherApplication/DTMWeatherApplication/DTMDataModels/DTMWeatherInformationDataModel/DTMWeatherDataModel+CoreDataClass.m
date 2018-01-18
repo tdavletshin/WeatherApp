@@ -7,8 +7,11 @@
 //
 //
 
+
 #import "DTMWeatherDataModel+CoreDataClass.h"
 
+
 @implementation DTMWeatherDataModel
+
 
 @end

@@ -6,27 +6,35 @@
 //  Copyright © 2018 Davletshin Timur. All rights reserved.
 //
 
+
 #import "DTMCityDataModelService.h"
 #import "DTMJSONToDTMCityDataModelMapper.h"
 
 
 static DTMCityDataModelService *sharedInstance = nil;
 
+
 @interface DTMCityDataModelService ()
+
 
 @property (nonatomic, copy, nonnull) NSArray <DTMCityDataModel *> *generalData;
 
+
 @end
 
+
 @implementation DTMCityDataModelService
+
+
+#pragma mark - Lifecycle
 
 + (DTMCityDataModelService *_Nonnull)sharedService
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken,
-                  ^{
-                      sharedInstance = [[DTMCityDataModelService alloc] initSharedInstance];
-                  });
+    ^{
+        sharedInstance = [[DTMCityDataModelService alloc] initSharedInstance];
+    });
     return sharedInstance;
 }
 
@@ -51,7 +59,6 @@ static DTMCityDataModelService *sharedInstance = nil;
     return self;
 }
 
-
 -(instancetype) initSharedInstanceWithFakeData
 {
     self = [super init];
@@ -68,6 +75,7 @@ static DTMCityDataModelService *sharedInstance = nil;
     
     return self;
 }
+
 
 #pragma mark - Update Data For Table for search text
 

@@ -6,11 +6,16 @@
 //  Copyright © 2018 Davletshin Timur. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
+
 
 @interface DTMAddingViewController : UIViewController
 
+
 - (void)transiteToMainViewController;
-- (void)transiteToAlertControllerWithError: (NSError *)error andDescription: (NSString *)description;
+- (void)transiteToAlertControllerWithError: (NSError *)error withDescription: (NSString *)description;
 - (void)reloadDataInAddingCitiesTableView;
+
+
 @end

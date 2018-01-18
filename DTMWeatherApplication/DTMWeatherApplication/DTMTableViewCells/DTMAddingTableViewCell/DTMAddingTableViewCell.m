@@ -9,6 +9,7 @@
 #import "DTMAddingTableViewCell.h"
 #import <Masonry/Masonry.h>
 
+
 static NSString *const DTMCityLabelFontName = @"Courier-Bold";
 static NSString *const DTMCountryLabelFontName = @"Courier-Bold";
 static const CGFloat DTMElementsOffset = 10.0;
@@ -16,7 +17,9 @@ static CGFloat DTMAddingCellAlphaValue = 0.5;
 static CGFloat DTMCountryLabelFontSize = 20.0;
 static CGFloat DTMCityLabelFontSize = 32.0;
 
+
 @implementation DTMAddingTableViewCell
+
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -65,19 +68,10 @@ static CGFloat DTMCityLabelFontSize = 32.0;
     self.selectedBackgroundView.frame = CGRectMake(0, 0, CGRectGetMaxX(self.contentView.frame), CGRectGetMaxY(self.countryLabel.frame) + DTMElementsOffset);
 }
 
-+ (CGFloat)heightForCellForCityName: (NSString *_Nonnull)cityName andCountryName: (NSString *_Nonnull)countryName
-{
-    DTMAddingTableViewCell *testCell = [[DTMAddingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TEST.ID"];
-    
-    testCell.cityLabel.text = cityName;
-    testCell.countryLabel.text = countryName;
-    
-    [testCell layoutSubviews];
-    
-    return DTMElementsOffset * 4 + CGRectGetMaxY(testCell.countryLabel.frame);
-}
 
-- (CGFloat)heightForCellWithCityName: (NSString *_Nonnull)cityName andCountryName: (NSString *_Nonnull)countryName
+#pragma mark - Calculating height of cell
+
+- (CGFloat)heightForCellWithCityName: (NSString *_Nonnull)cityName withCountryName: (NSString *_Nonnull)countryName
 {
     CGSize sizeConstraints = CGSizeMake(CGRectGetMaxX(self.contentView.frame) - 2*DTMElementsOffset, CGFLOAT_MAX);
     UIFont *cityLabelFont = [UIFont fontWithName:DTMCityLabelFontName size:DTMCityLabelFontSize];
@@ -91,10 +85,9 @@ static CGFloat DTMCityLabelFontSize = 32.0;
     
     CGFloat heighOfCityLabel = rectForCityLabel.size.height;
     CGFloat heighOfCountryLabel = rectForCountryLabel.size.height;
-    
     CGFloat resultHeight = heighOfCityLabel + heighOfCountryLabel + 3 * DTMElementsOffset;
     
-    return resultHeight + 2*DTMElementsOffset;
+    return (resultHeight + 2 * DTMElementsOffset);
 }
 
 

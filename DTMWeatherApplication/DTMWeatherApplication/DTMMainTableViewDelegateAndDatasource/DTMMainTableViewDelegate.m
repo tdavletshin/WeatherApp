@@ -7,6 +7,7 @@
 //  Copyright © 2017 Davletshin Timur. All rights reserved.
 //
 
+
 #import "DTMMainTableViewDelegate.h"
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
@@ -15,15 +16,22 @@
 
 
 static const CGFloat DTMCellInterval = 22.0;
-extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
+extern NSString *const DTMCustomMainTableCellReuseIdentifier;
+
 
 @interface DTMMainTableViewDelegate ()
 
+
 @property (nonatomic, strong) NSManagedObjectContext *coreDataContext;
+
 
 @end
 
+
 @implementation DTMMainTableViewDelegate 
+
+
+#pragma mark - TableView delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -35,7 +43,7 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
     
     DTMMainTableViewCell *cell = [[DTMMainTableViewCell alloc] init];
     
-    return [cell heightForCellWithCityName:cityName andDate:date];
+    return [cell heightForCellWithCityName:cityName withDate:date];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -54,16 +62,14 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
 {
     CGRect frame = cell.frame;
     [cell setFrame:CGRectMake(0, tableView.frame.size.height, frame.size.width, frame.size.height)];
-    [   UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionTransitionCrossDissolve  animations:
-        ^{
-             [cell setFrame:frame];
-         }
-        completion:^(BOOL finished) {}
-     ];
+    [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+            [cell setFrame:frame];
+        }
+    completion:^(BOOL finished) {}];
 }
 
 
-#pragma mark - Data source
+#pragma mark - TableView dataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -75,10 +81,9 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    //for inversion order of cells
     DTMWeatherDataModel *data = self.dataForTable[self.dataForTable.count - indexPath.row - 1];
     
-    DTMMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DTM_CUSTOM_CELL_REUSE_IDENTIFIER forIndexPath:indexPath];
+    DTMMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DTMCustomMainTableCellReuseIdentifier forIndexPath:indexPath];
 
     if ((int)data.temperature > 0)
         cell.temperatureLabel.text = [NSString stringWithFormat:@"+%d \u00B0C", (int)data.temperature];
@@ -97,7 +102,8 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
     return cell;
 }
 
-#pragma mark - CoreDataContext getter
+
+#pragma mark - custom coreDataContext getter
 
 - (NSManagedObjectContext *)coreDataContext
 {
@@ -107,7 +113,8 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
     return context;
 }
 
-#pragma mark - Refresh dataForTable
+
+#pragma mark - Updating dataForTable
 
 - (void)updateDataForMainTableView
 {
@@ -127,14 +134,17 @@ extern NSString *const DTM_CUSTOM_CELL_REUSE_IDENTIFIER;
 }
 
 
+#pragma mark - Removing element from data model
+
 - (void)removeElementFromDataModelForIndex:(NSUInteger)index
 {
     DTMWeatherDataModel *data = self.dataForTable[self.dataForTable.count - index - 1];
     
-    if(!data) return;
-    
+    if(!data)
+    {
+        return;
+    }
     [self.coreDataContext deleteObject:data];
-        
     if ([data isDeleted])
     {
         [self.coreDataContext save:nil];

@@ -7,11 +7,14 @@
 //
 //
 
+
 #import "DTMWeatherDataModel+CoreDataClass.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface DTMWeatherDataModel (CoreDataProperties)
+
 
 @property (nonatomic) int64_t city_id;
 @property (nonatomic, copy, nullable) NSString *city_name;
@@ -25,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<DTMWeatherDataModel *> *)fetchRequest;
 
+
 @end
+
 
 NS_ASSUME_NONNULL_END

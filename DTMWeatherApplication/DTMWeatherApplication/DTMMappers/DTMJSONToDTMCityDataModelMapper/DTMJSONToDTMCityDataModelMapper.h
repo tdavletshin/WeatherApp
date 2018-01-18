@@ -6,12 +6,17 @@
 //  Copyright © 2018 Davletshin Timur. All rights reserved.
 //
 
+
 #import <Foundation/Foundation.h>
+
 
 typedef void (^DTMMapperCompletionBlock)(NSError *error);
 
+
 @interface DTMJSONToDTMCityDataModelMapper : NSObject
 
+
 + (NSArray *)arrayOfDTMCityDataModelFromJSON:(NSData *)jsonData completionHandler:(DTMMapperCompletionBlock)completion;
+
 
 @end

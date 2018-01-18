@@ -6,9 +6,12 @@
 //  Copyright © 2018 Davletshin Timur. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 
+
 @interface DTMMainTableViewCell : UITableViewCell
+
 
 @property (nonatomic, strong, nonnull) UILabel *temperatureLabel;
 @property (nonatomic, strong, nonnull) UILabel *cityLabel;
@@ -16,8 +19,7 @@
 @property (nonatomic, strong, nonnull) UIImageView *weatherImageView;
 @property (nonatomic, strong, nonnull) UIButton *detailButton;
 
-+ (CGFloat)heightForCellForCityName: (NSString *_Nonnull)cityName;
+- (CGFloat)heightForCellWithCityName: (NSString *_Nonnull)cityName withDate: (NSString *_Nonnull)Date;
 
-- (CGFloat)heightForCellWithCityName: (NSString *_Nonnull)cityName andDate: (NSString *_Nonnull)Date;
 
 @end

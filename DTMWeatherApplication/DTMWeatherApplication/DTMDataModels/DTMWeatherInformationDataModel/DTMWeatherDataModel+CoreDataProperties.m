@@ -7,13 +7,12 @@
 //
 //
 
+
 #import "DTMWeatherDataModel+CoreDataProperties.h"
+
 
 @implementation DTMWeatherDataModel (CoreDataProperties)
 
-+ (NSFetchRequest<DTMWeatherDataModel *> *)fetchRequest {
-	return [[NSFetchRequest alloc] initWithEntityName:@"DTMWeatherDataModel"];
-}
 
 @dynamic city_id;
 @dynamic city_name;
@@ -25,6 +24,11 @@
 @dynamic wind_direction;
 @dynamic wind_speed;
 
+
++ (NSFetchRequest<DTMWeatherDataModel *> *)fetchRequest
+{
+	return [[NSFetchRequest alloc] initWithEntityName:@"DTMWeatherDataModel"];
+}
 
 -(NSString *)description
 {
@@ -39,5 +43,6 @@
             self.wind_direction,
             self.wind_speed];
 }
+
 
 @end

@@ -7,15 +7,21 @@
 //
 //
 
+
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+
 NS_ASSUME_NONNULL_BEGIN
+
 
 @interface DTMWeatherDataModel : NSManagedObject
 
+
 @end
 
+
 NS_ASSUME_NONNULL_END
+
 
 #import "DTMWeatherDataModel+CoreDataProperties.h"

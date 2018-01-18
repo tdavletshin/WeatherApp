@@ -6,18 +6,16 @@
 //  Copyright © 2018 Davletshin Timur. All rights reserved.
 //
 
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "DTMAddingViewController.h"
 
-typedef void (^TransiteToMainViewControllerBlock)(void);
-typedef void (^TransiteToAlertControllerBlock)(NSError *_Nonnull error, NSString * _Nullable description);
 
 @interface DTMAddingTableViewDelegate : NSObject <UITableViewDelegate>
 
-//@property (nonatomic, copy, nonnull) TransiteToMainViewControllerBlock transiteToMainViewControllerBlock;
-//@property (nonatomic, copy, nonnull) TransiteToAlertControllerBlock transiteToAlertControllerBlock;
 
 @property (nonatomic, weak, nullable) DTMAddingViewController *viewController;
+
 
 @end

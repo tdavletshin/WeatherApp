@@ -6,17 +6,20 @@
 //  Copyright © 2017 Davletshin Timur. All rights reserved.
 //
 
+
 #import "DTMCoreDataController.h"
+#import "AppDelegate.h"
+
 
 @implementation DTMCoreDataController
+
 
 static DTMCoreDataController *sharedInstance = nil;
 
 + (DTMCoreDataController *)sharedController
 {
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken,
-    ^{
+    dispatch_once(&onceToken,^{
         sharedInstance = [[DTMCoreDataController alloc] initSharedInstance];
     });
     return sharedInstance;
@@ -32,11 +35,19 @@ static DTMCoreDataController *sharedInstance = nil;
     [_persistentContainer loadPersistentStoresWithCompletionHandler:
      ^(NSPersistentStoreDescription *description, NSError *error)
     {
-        if (error != nil)
+        if (error)
         {
-            //To do: replace abort with another action
-            NSLog(@"Failed to load Core Data stack: %@", error);
-            abort();
+            UIApplication *application = [UIApplication sharedApplication];
+            AppDelegate *applocationDelegate = (AppDelegate *)application.delegate;
+            UINavigationController *navigationController = applocationDelegate.navigationController;
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Your action can not be done" message:[NSString stringWithFormat:@"Failed to load Core Data stack: %@", error] preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+                [navigationController dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [alert addAction:ok];
+            [navigationController presentViewController:alert animated:YES completion:nil];
         }
     }];
     return self;
@@ -48,11 +59,19 @@ static DTMCoreDataController *sharedInstance = nil;
     NSError *error = nil;
     if ([context hasChanges] && ![context save:&error])
     {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
-        abort();
+        UIApplication *application = [UIApplication sharedApplication];
+        AppDelegate *applocationDelegate = (AppDelegate *)application.delegate;
+        UINavigationController *navigationController = applocationDelegate.navigationController;
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Your action can not be done" message:[NSString stringWithFormat:@"Unresolved error of Core Data stack: %@", error] preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+            [navigationController dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:ok];
+        [navigationController presentViewController:alert animated:YES completion:nil];
     }
 }
+
 
 @end
