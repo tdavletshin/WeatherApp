@@ -38,6 +38,7 @@
 		CED095251FFC405800B8FCC4 /* DTMAddingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED095241FFC405800B8FCC4 /* DTMAddingViewController.m */; };
 		CED0953A2002938000B8FCC4 /* DTMMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CED095392002938000B8FCC4 /* DTMMainTableViewCell.m */; };
 		CEDDBC9020098E430099D8E7 /* DTMAddingSearchBarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDDBC8F20098E430099D8E7 /* DTMAddingSearchBarDelegate.m */; };
+		CEFA66F42012175A00D02DA0 /* DTMDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFA66F32012175A00D02DA0 /* DTMDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,8 @@
 		CED095392002938000B8FCC4 /* DTMMainTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMMainTableViewCell.m; sourceTree = "<group>"; };
 		CEDDBC8E20098E430099D8E7 /* DTMAddingSearchBarDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMAddingSearchBarDelegate.h; sourceTree = "<group>"; };
 		CEDDBC8F20098E430099D8E7 /* DTMAddingSearchBarDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMAddingSearchBarDelegate.m; sourceTree = "<group>"; };
+		CEFA66F22012175A00D02DA0 /* DTMDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTMDetailViewController.h; sourceTree = "<group>"; };
+		CEFA66F32012175A00D02DA0 /* DTMDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTMDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,10 +340,9 @@
 		CED0950D1FF9368100B8FCC4 /* DTMViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CED0950E1FF936EB00B8FCC4 /* DTMMainViewController.h */,
-				CED0950F1FF936EB00B8FCC4 /* DTMMainViewController.m */,
-				CED095231FFC405800B8FCC4 /* DTMAddingViewController.h */,
-				CED095241FFC405800B8FCC4 /* DTMAddingViewController.m */,
+				CEFA66F12012171000D02DA0 /* DTMDetailViewController */,
+				CEFA66F0201216F200D02DA0 /* DTMAddingViewController */,
+				CEFA66EF201216BE00D02DA0 /* DTMMainViewController */,
 			);
 			path = DTMViewControllers;
 			sourceTree = "<group>";
@@ -392,6 +394,33 @@
 				CEDDBC8F20098E430099D8E7 /* DTMAddingSearchBarDelegate.m */,
 			);
 			path = DTMAddingSearchBarDelegate;
+			sourceTree = "<group>";
+		};
+		CEFA66EF201216BE00D02DA0 /* DTMMainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CED0950E1FF936EB00B8FCC4 /* DTMMainViewController.h */,
+				CED0950F1FF936EB00B8FCC4 /* DTMMainViewController.m */,
+			);
+			path = DTMMainViewController;
+			sourceTree = "<group>";
+		};
+		CEFA66F0201216F200D02DA0 /* DTMAddingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CED095231FFC405800B8FCC4 /* DTMAddingViewController.h */,
+				CED095241FFC405800B8FCC4 /* DTMAddingViewController.m */,
+			);
+			path = DTMAddingViewController;
+			sourceTree = "<group>";
+		};
+		CEFA66F12012171000D02DA0 /* DTMDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEFA66F22012175A00D02DA0 /* DTMDetailViewController.h */,
+				CEFA66F32012175A00D02DA0 /* DTMDetailViewController.m */,
+			);
+			path = DTMDetailViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -539,6 +568,7 @@
 				CE21FD7420079571000D729D /* DTMAddingTableViewDataSource.m in Sources */,
 				CED095251FFC405800B8FCC4 /* DTMAddingViewController.m in Sources */,
 				CE3621771FEFDB560065BCB1 /* main.m in Sources */,
+				CEFA66F42012175A00D02DA0 /* DTMDetailViewController.m in Sources */,
 				CE21FD6D20078F74000D729D /* DTMCityDataModel.m in Sources */,
 				CED0951C1FF95C5E00B8FCC4 /* DTMMainTableViewDelegate.m in Sources */,
 				CE21FD642006A96F000D729D /* DTMWeatherDataModel+CoreDataClass.m in Sources */,

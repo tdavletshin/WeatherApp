@@ -10,6 +10,9 @@
 #import <UIKit/UIKit.h>
 
 
+typedef void (^ButtonBlock)(NSUInteger indexInDataModel);
+
+
 @interface DTMMainTableViewCell : UITableViewCell
 
 
@@ -18,6 +21,8 @@
 @property (nonatomic, strong, nonnull) UILabel *dateLabel;
 @property (nonatomic, strong, nonnull) UIImageView *weatherImageView;
 @property (nonatomic, strong, nonnull) UIButton *detailButton;
+@property (nonatomic, assign) NSUInteger indexInDataModel;
+@property (nonatomic, copy, nullable) ButtonBlock buttonBlock;
 
 - (CGFloat)heightForCellWithCityName: (NSString *_Nonnull)cityName withDate: (NSString *_Nonnull)Date;
 

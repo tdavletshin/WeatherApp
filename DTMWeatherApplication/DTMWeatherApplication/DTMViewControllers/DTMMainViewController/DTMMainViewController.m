@@ -15,14 +15,17 @@
 #import <Foundation/Foundation.h>
 #import "DTMMainTableViewCell.h"
 #import "DTMCityDataModelService.h"
+#import "DTMDetailViewController.h"
 
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
-const CGFloat NavigationBarFontSize = 26.0;
+static const CGFloat NavigationBarFontSize = 26.0;
 const int NavigationBarColor = 0x00aeda;
 NSString *const DTMCustomMainTableCellReuseIdentifier = @"DTM.Custom.Weather.Cell";
+static NSString *const DTMNavigatonBarFontName = @"HelveticaNeue-CondensedBlack";
+static NSString *const DTMNavigationItemTitle = @"Weather for date";
 
 
 @interface DTMMainViewController ()
@@ -80,6 +83,7 @@ NSString *const DTMCustomMainTableCellReuseIdentifier = @"DTM.Custom.Weather.Cel
 {
     self.mainTableView = [[UITableView alloc] init];
     self.mainTableViewDelegateAndDataSource = [[DTMMainTableViewDelegate alloc] init];
+    self.mainTableViewDelegateAndDataSource.viewController = self;
     self.mainTableView.delegate = self.mainTableViewDelegateAndDataSource;
     self.mainTableView.dataSource = self.mainTableViewDelegateAndDataSource;
     [self.mainTableView registerClass:[DTMMainTableViewCell class] forCellReuseIdentifier:DTMCustomMainTableCellReuseIdentifier];
@@ -99,8 +103,8 @@ NSString *const DTMCustomMainTableCellReuseIdentifier = @"DTM.Custom.Weather.Cel
     [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                                       UIColor.whiteColor, NSForegroundColorAttributeName,
                                                                       shadow, NSShadowAttributeName,
-                                                                      [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:NavigationBarFontSize], NSFontAttributeName, nil]];
-    self.navigationItem.title = @"Weather for date";
+                                                                      [UIFont fontWithName:DTMNavigatonBarFontName size:NavigationBarFontSize], NSFontAttributeName, nil]];
+    self.navigationItem.title = DTMNavigationItemTitle;
     UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(transiteToAddingViewController)];
     UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action: @selector(deleteSelectedCell)];
     self.navigationItem.leftBarButtonItem = addItem;
@@ -115,6 +119,14 @@ NSString *const DTMCustomMainTableCellReuseIdentifier = @"DTM.Custom.Weather.Cel
 - (void)transiteToAddingViewController
 {
     [self.navigationController pushViewController:[[DTMAddingViewController alloc] init] animated:YES];
+}
+
+
+#pragma mark - Transition to detail view controller
+
+- (void)transiteToDetailViewControllerWithDataModelIndex: (NSUInteger)index
+{
+    [self.navigationController pushViewController:[[DTMDetailViewController alloc] initWithDataModelIndex:index] animated:YES];
 }
 
 #pragma mark - Deleting of selected cell

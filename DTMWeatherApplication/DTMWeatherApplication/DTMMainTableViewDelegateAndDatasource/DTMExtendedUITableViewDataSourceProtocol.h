@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "DTMWeatherDataModel+CoreDataClass.h"
 #import "DTMWeatherDataModel+CoreDataProperties.h"
+#import "DTMMainViewController.h"
 
 
 @protocol DTMExtendedUITableViewDataSource <UITableViewDataSource>
@@ -19,6 +20,7 @@
 
 
 @property (nonatomic, copy, nonnull) NSArray *dataForTable;
+@property (nonatomic, weak, nullable) DTMMainViewController *viewController;
 
 - (void)updateDataForMainTableView;
 

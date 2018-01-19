@@ -55,11 +55,11 @@ static CGFloat DTMCityLabelFontSize = 32.0;
 {
     [super layoutSubviews];
     
-    CGSize cityLabelSize = [self.cityLabel sizeThatFits:CGSizeMake(CGRectGetMaxX(self.contentView.frame) - 2*DTMElementsOffset, CGFLOAT_MAX)];
+    CGSize cityLabelSize = [self.cityLabel sizeThatFits:CGSizeMake(CGRectGetMaxX(self.contentView.frame) - 2 * DTMElementsOffset, CGFLOAT_MAX)];
     
     self.cityLabel.frame = CGRectMake(DTMElementsOffset, DTMElementsOffset, cityLabelSize.width, cityLabelSize.height);
     
-    CGSize countryLabelSize = [self.countryLabel sizeThatFits:CGSizeMake(CGRectGetMaxX(self.contentView.frame) - 2*DTMElementsOffset, CGFLOAT_MAX)];
+    CGSize countryLabelSize = [self.countryLabel sizeThatFits:CGSizeMake(CGRectGetMaxX(self.contentView.frame) - 2 * DTMElementsOffset, CGFLOAT_MAX)];
     
     self.countryLabel.frame = CGRectMake(DTMElementsOffset, 2 * DTMElementsOffset + cityLabelSize.height, countryLabelSize.width, countryLabelSize.height);
     
@@ -73,7 +73,7 @@ static CGFloat DTMCityLabelFontSize = 32.0;
 
 - (CGFloat)heightForCellWithCityName: (NSString *_Nonnull)cityName withCountryName: (NSString *_Nonnull)countryName
 {
-    CGSize sizeConstraints = CGSizeMake(CGRectGetMaxX(self.contentView.frame) - 2*DTMElementsOffset, CGFLOAT_MAX);
+    CGSize sizeConstraints = CGSizeMake(CGRectGetMaxX(self.contentView.frame) - 2 * DTMElementsOffset, CGFLOAT_MAX);
     UIFont *cityLabelFont = [UIFont fontWithName:DTMCityLabelFontName size:DTMCityLabelFontSize];
     UIFont *countryLabelFont = [UIFont fontWithName:DTMCountryLabelFontName size:DTMCountryLabelFontSize];
     

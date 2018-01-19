@@ -52,7 +52,9 @@ static CGFloat DTMDateLabelFontSize = 14.0;
     _detailButton = [[UIButton alloc] init];
     [_detailButton setImage:[UIImage imageNamed:@"arrow.jpg"] forState:UIControlStateNormal];
     _detailButton.imageView.layer.cornerRadius = DTMDetailButtonSize.height/2;
+    [_detailButton addTarget:self action:@selector(detailButtonDidClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_detailButton];
+    
     
     self.contentView.backgroundColor = UIColor.clearColor;
     self.backgroundColor = UIColor.clearColor;
@@ -84,6 +86,17 @@ static CGFloat DTMDateLabelFontSize = 14.0;
     self.dateLabel.frame = CGRectMake(CGRectGetMaxX(self.temperatureLabel.frame) + DTMElementsOffset, CGRectGetMaxY(self.cityLabel.frame) + DTMElementsOffset, cityLabelWidth, DTMWeatherImageViewSize.width/2);
     
     self.detailButton.frame = CGRectMake(CGRectGetMaxX(self.cityLabel.frame) + DTMElementsOffset, DTMElementsOffset, DTMDetailButtonSize.width, DTMDetailButtonSize.height);
+}
+
+
+#pragma mark - detailButtonAction
+
+- (void)detailButtonDidClicked
+{
+    if (self.buttonBlock)
+    {
+        self.buttonBlock(self.indexInDataModel);
+    }
 }
 
 

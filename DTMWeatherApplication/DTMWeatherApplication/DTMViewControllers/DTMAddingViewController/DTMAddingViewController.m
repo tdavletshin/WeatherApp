@@ -21,6 +21,7 @@
 
 
 extern NSString *const DTMCustomAddingTableReuseIdentifier;
+static NSString *const DTMNavigationItemTitle = @"Select city";
 
 
 @interface DTMAddingViewController ()
@@ -85,7 +86,7 @@ extern NSString *const DTMCustomAddingTableReuseIdentifier;
 
 - (void)setUpNavigationBar
 {    
-    self.navigationItem.title = @"Select city";
+    self.navigationItem.title = DTMNavigationItemTitle;
     UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(transiteToMainViewController)];
     self.navigationItem.rightBarButtonItem = addItem;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] init];

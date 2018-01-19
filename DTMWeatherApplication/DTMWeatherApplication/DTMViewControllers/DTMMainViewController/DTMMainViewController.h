@@ -13,4 +13,7 @@
 @interface DTMMainViewController : UIViewController
 
 
+- (void)transiteToDetailViewControllerWithDataModelIndex: (NSUInteger)index;
+
+
 @end

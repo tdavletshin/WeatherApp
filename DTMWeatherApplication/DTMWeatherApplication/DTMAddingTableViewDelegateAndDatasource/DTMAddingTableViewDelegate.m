@@ -49,15 +49,10 @@ static const CGFloat DTMCellInterval = 44.0;
     [DTMNetworkService getDataWithCityId:cityId completionHandler:^(NSError * _Nullable error, NSData * _Nullable data){
         if (error)
         {
-             NSLog(@"error with download task");
-            
-            __block NSError *networkError = error;
-            __block NSString *networkErrorDescription = @"Something goes wrong with network. Please check your connection and try again.";
-            
             dispatch_async(dispatch_get_main_queue(),^{
                 if (self.viewController)
                 {
-                    [self.viewController transiteToAlertControllerWithError:networkError withDescription:networkErrorDescription];
+                    [self.viewController transiteToAlertControllerWithError:error withDescription:error.description];
                 }
             });
         }
@@ -74,13 +69,10 @@ static const CGFloat DTMCellInterval = 44.0;
     [DTMJSONToDTMWeatherDataModelMapper saveInCoreDataDTMWeatherDataModelFromJSON:json completionHandler: ^(NSError *error){
         if (error)
         {
-            NSLog(@"error with saving core data context");
-            __block NSError *networkError = error;
-            __block NSString *networkErrorDescription = @"Something goes wrong. Please restart app and try again.";
             dispatch_async(dispatch_get_main_queue(),^{
                 if (self.viewController)
                 {
-                    [self.viewController transiteToAlertControllerWithError:networkError withDescription:networkErrorDescription];
+                    [self.viewController transiteToAlertControllerWithError:error withDescription:error.description];
                 }
             });
         }

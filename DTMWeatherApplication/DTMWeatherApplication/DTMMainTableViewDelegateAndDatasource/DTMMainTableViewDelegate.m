@@ -17,6 +17,7 @@
 
 static const CGFloat DTMCellInterval = 22.0;
 extern NSString *const DTMCustomMainTableCellReuseIdentifier;
+static NSString *const DTMDateFomatString = @"dd/MM/yyyy  HH:mm";
 
 
 @interface DTMMainTableViewDelegate ()
@@ -38,7 +39,7 @@ extern NSString *const DTMCustomMainTableCellReuseIdentifier;
     DTMWeatherDataModel *data = self.dataForTable[self.dataForTable.count - indexPath.row - 1];
     NSString *cityName = data.city_name;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/yyyy  HH:mm"];
+    [formatter setDateFormat:DTMDateFomatString];
     NSString *date = [formatter stringFromDate:data.date];
     
     DTMMainTableViewCell *cell = [[DTMMainTableViewCell alloc] init];
@@ -86,18 +87,35 @@ extern NSString *const DTMCustomMainTableCellReuseIdentifier;
     DTMMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DTMCustomMainTableCellReuseIdentifier forIndexPath:indexPath];
 
     if ((int)data.temperature > 0)
+    {
         cell.temperatureLabel.text = [NSString stringWithFormat:@"+%d \u00B0C", (int)data.temperature];
+    }
     else
+    {
         cell.temperatureLabel.text = [NSString stringWithFormat:@"%d \u00B0C", (int)data.temperature];
+    }
     
     cell.cityLabel.text = data.city_name;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/yyyy  HH:mm"];
+    [formatter setDateFormat:DTMDateFomatString];
     cell.dateLabel.text = [formatter stringFromDate:data.date];
     
     NSString *imageName = [[NSString alloc] initWithFormat:@"%@.png", data.icon_id];
     cell.weatherImageView.image = [UIImage imageNamed:imageName];
+    
+    
+    NSUInteger index = self.dataForTable.count - indexPath.row - 1;
+    cell.indexInDataModel = index;
+    
+    __weak typeof(self)weakSelf = self;
+    cell.buttonBlock = ^(NSUInteger indexInDataModel) {
+        __strong typeof(self)self = weakSelf;
+        if (self.viewController)
+        {
+            [self.viewController transiteToDetailViewControllerWithDataModelIndex:indexInDataModel];
+        }
+    };
     
     return cell;
 }
@@ -119,12 +137,19 @@ extern NSString *const DTMCustomMainTableCellReuseIdentifier;
 - (void)updateDataForMainTableView
 {
     NSError *error = nil;
-    NSArray *result = [self.coreDataContext executeFetchRequest:[DTMWeatherDataModel fetchRequest] error:&error];
+    NSArray <DTMWeatherDataModel *> *result = [self.coreDataContext executeFetchRequest:[DTMWeatherDataModel fetchRequest] error:&error];
     
     if (error)
     {
-        NSLog(@"не удалось выполнить fetch request");
-        NSLog(@"%@ %@", error, error.localizedDescription);
+        UIApplication *application = [UIApplication sharedApplication];
+        AppDelegate *applocationDelegate = (AppDelegate *)application.delegate;
+        UINavigationController *navigationController = applocationDelegate.navigationController;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Your action can not be done" message:[NSString stringWithFormat:@"Unresolved error of Core Data: %@", error] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+            [navigationController dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:ok];
+        [navigationController presentViewController:alert animated:YES completion:nil];
     }
     
     else
