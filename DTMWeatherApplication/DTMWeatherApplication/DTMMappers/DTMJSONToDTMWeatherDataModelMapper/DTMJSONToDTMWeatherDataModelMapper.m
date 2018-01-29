@@ -45,7 +45,10 @@
     dataModel.wind_direction = [tmpDictionary[@"wind"][@"deg"] doubleValue];
     dataModel.wind_speed = [tmpDictionary[@"wind"][@"speed"] doubleValue];
     [dataModel.managedObjectContext save:&error];
-    completion(error);
+    if(completion)
+    {
+        completion(error);
+    }
 }
 
 

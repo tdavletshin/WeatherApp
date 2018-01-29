@@ -111,10 +111,7 @@ static NSString *const DTMDateFomatString = @"dd/MM/yyyy  HH:mm";
     __weak typeof(self)weakSelf = self;
     cell.buttonBlock = ^(NSUInteger indexInDataModel) {
         __strong typeof(self)self = weakSelf;
-        if (self.viewController)
-        {
-            [self.viewController transiteToDetailViewControllerWithDataModelIndex:indexInDataModel];
-        }
+        [self.viewController transiteToDetailViewControllerWithDataModelIndex:indexInDataModel];
     };
     
     return cell;

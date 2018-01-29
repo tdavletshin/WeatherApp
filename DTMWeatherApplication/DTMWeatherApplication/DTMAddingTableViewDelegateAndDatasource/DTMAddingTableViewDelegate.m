@@ -50,10 +50,7 @@ static const CGFloat DTMCellInterval = 44.0;
         if (error)
         {
             dispatch_async(dispatch_get_main_queue(),^{
-                if (self.viewController)
-                {
-                    [self.viewController transiteToAlertControllerWithError:error withDescription:error.description];
-                }
+                [self.viewController transiteToAlertControllerWithError:error withDescription:error.description];
             });
         }
         
@@ -70,19 +67,13 @@ static const CGFloat DTMCellInterval = 44.0;
         if (error)
         {
             dispatch_async(dispatch_get_main_queue(),^{
-                if (self.viewController)
-                {
-                    [self.viewController transiteToAlertControllerWithError:error withDescription:error.description];
-                }
+                [self.viewController transiteToAlertControllerWithError:error withDescription:error.description];
             });
         }
         else
         {
             dispatch_async(dispatch_get_main_queue(),^{
-                if (self.viewController)
-                {
-                    [self.viewController transiteToMainViewController];
-                }
+                [self.viewController transiteToMainViewController];
             });
         }
     }];

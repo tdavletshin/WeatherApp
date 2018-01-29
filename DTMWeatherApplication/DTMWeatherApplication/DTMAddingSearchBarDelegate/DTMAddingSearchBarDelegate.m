@@ -18,11 +18,7 @@
 {
     DTMCityDataModelService *service = [DTMCityDataModelService sharedService];
     [service updateDataForTableForSearchText:searchText];
-    
-    if (self.viewController)
-    {
-        [self.viewController reloadDataInAddingCitiesTableView];
-    }
+    [self.viewController reloadDataInAddingCitiesTableView];
 }
 
 

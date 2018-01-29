@@ -25,7 +25,10 @@ static NSString *const WEBServiceAddress = @"https://api.openweathermap.org";
     NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
     NSURLSessionDataTask *dataTask = [urlSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error){
-        completionBlock(error, data);
+        if (completionBlock)
+        {
+            completionBlock(error, data);
+        }
     }];
     [dataTask resume];
 }
